@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
+@theme {
+  --color-caramel-50: #FBF3EC;
+  --color-caramel-100: #F3E0CE;
+  --color-caramel-300: #D9A468;
+  --color-caramel-500: #ECA315;
+  --color-caramel-700: #8A4A1F;
+  --color-caramel-900: #5C2518;
+  --color-caramel-gold: #ECA315;
+  --color-caramel-dark: #5C2518;
+
+  --color-royal-500: #C1272D;
+  --color-royal-600: #A31F24;
+  --color-royal-red: #C1272D;
+
+  --color-cream: #FDFBF7;
+  --color-cream-100: #FBF6EE;
+
+  --font-display: var(--font-display), "Playfair Display", Georgia, serif;
+  --font-body: var(--font-body), "Inter", system-ui, sans-serif;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-warm: 0 8px 30px rgba(92, 37, 24, 0.12);
+  --shadow-warm-lg: 0 14px 40px rgba(92, 37, 24, 0.18);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FDFBF7;
+  --foreground: #5C2518;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar matching caramel aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FDFBF7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9A468;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ECA315;
 }
