@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useMemo, useEffect } from "react";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { products, productCategories, Product } from "@/data/products";
 import ProductCard from "@/components/ui/ProductCard";
 
@@ -85,27 +85,41 @@ function CategoryRow({ id, label, products }: CategoryRowProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const showArrow = products.length > 3;
 
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -320, behavior: "smooth" });
+  };
+
   const scrollRight = () => {
     scrollRef.current?.scrollBy({ left: 320, behavior: "smooth" });
   };
 
   return (
     <div id={id} className="scroll-mt-28 sm:scroll-mt-36">
-      {/* Category Title */}
-      <div className="flex items-end justify-between mb-8">
-        <h2 className="text-3xl font-bold text-caramel-dark border-b border-caramel-gold/20 pb-4 font-display">
+      {/* Category Title & Navigation Buttons */}
+      <div className="flex items-end justify-between mb-8 border-b border-caramel-gold/20 pb-4">
+        <h2 className="text-3xl font-bold text-caramel-dark font-display">
           {label}
         </h2>
 
         {showArrow && (
-          <button
-            type="button"
-            onClick={scrollRight}
-            aria-label={`Défiler ${label}`}
-            className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/10 hover:border-caramel-gold/60 transition-colors mb-4 ml-4 flex-shrink-0"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2 mb-0 ml-4 flex-shrink-0">
+            <button
+              type="button"
+              onClick={scrollLeft}
+              aria-label={`Précédent ${label}`}
+              className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              onClick={scrollRight}
+              aria-label={`Suivant ${label}`}
+              className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         )}
       </div>
 

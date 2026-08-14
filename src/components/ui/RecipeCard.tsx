@@ -26,7 +26,7 @@ export default function RecipeCard({
       className={`group flex flex-col ${className}`}
     >
       {/* Image Container */}
-      <div className="overflow-hidden rounded-xl aspect-[4/5] relative mb-5 bg-caramel-900/5">
+      <div className="overflow-hidden rounded-xl aspect-[4/5] relative mb-5">
         <Image
           src={recipe.image}
           alt={recipe.title}
@@ -46,9 +46,8 @@ export default function RecipeCard({
           {recipe.title}
         </h3>
         <ChevronDown
-          className={`w-5 h-5 text-caramel-gold flex-shrink-0 mt-1 transition-transform duration-300 ${
-            isExpanded ? "rotate-180" : ""
-          }`}
+          className={`w-5 h-5 text-caramel-gold flex-shrink-0 mt-1 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""
+            }`}
         />
       </button>
 

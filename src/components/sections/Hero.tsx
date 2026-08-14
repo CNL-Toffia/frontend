@@ -9,8 +9,7 @@ export interface FlavorSlide {
   id: string;
   image: string;
   name: string;
-  blobClass: string;
-  ambientGlow: string;
+  tag: string;
 }
 
 const flavorSlides: FlavorSlide[] = [
@@ -18,22 +17,19 @@ const flavorSlides: FlavorSlide[] = [
     id: "caramel",
     image: "/multipProduct1.png",
     name: "Caramel Signature",
-    blobClass: "bg-caramel-gold/20",
-    ambientGlow: "rgba(236, 163, 21, 0.12)",
+    tag: "Artisanal & Fondant",
   },
   {
     id: "noisette",
     image: "/multipProduct2.png",
     name: "Pâte de Noisette",
-    blobClass: "bg-[#8B5A2B]/15",
-    ambientGlow: "rgba(139, 90, 43, 0.10)",
+    tag: "100% Saveur Intense",
   },
   {
     id: "pistache",
     image: "/multipProduct3.png",
     name: "Crème de Pistache",
-    blobClass: "bg-[#93C572]/18",
-    ambientGlow: "rgba(147, 197, 114, 0.12)",
+    tag: "Onctuosité Noble",
   },
 ];
 
@@ -43,7 +39,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % flavorSlides.length);
-    }, 5000);
+    }, 4500);
 
     return () => clearInterval(timer);
   }, []);
@@ -51,48 +47,45 @@ export default function Hero() {
   const current = flavorSlides[activeSlide];
 
   return (
-    <section className="relative flex items-center justify-center bg-cream py-16 sm:py-20 lg:py-24 overflow-hidden">
-      {/* Subtle Background Ambient Halo */}
-      <motion.div
-        key={`ambient-${current.id}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1.2, ease: "easeInOut" }}
-        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[480px] h-[480px] rounded-full blur-[100px] pointer-events-none"
-        style={{ backgroundColor: current.ambientGlow }}
+    <section className="relative flex items-center justify-center pt-20 sm:pt-28 lg:pt-32 pb-14 sm:pb-20 lg:pb-24 overflow-hidden">
+
+      {/* ── Soft Luxury Warm Ambient Light ── */}
+      <div
+        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[350px] sm:w-[500px] lg:w-[650px] h-[350px] sm:h-[500px] lg:h-[650px] rounded-full blur-[90px] sm:blur-[120px] pointer-events-none opacity-70 transition-all duration-1000"
+        style={{
+          background: "radial-gradient(circle, rgba(236, 163, 21, 0.28) 0%, rgba(217, 164, 104, 0.16) 45%, transparent 70%)",
+        }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-          {/* Left Column: Editorial Headline & Magazine Subtitle with Subtle Entrance Animation */}
+          {/* ── Left Column: Editorial Headline & Inline Clickable Links ── */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="order-1 lg:order-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full"
+            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            className="order-1 lg:order-1 lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left w-full"
           >
-            <h1 className="font-display font-bold text-4xl sm:text-6xl lg:text-[4.25rem] text-caramel-dark leading-[1.1] tracking-tight max-w-2xl">
-              TOFFIA — La Passion du{" "}
-              <span className="text-caramel-gold font-bold">Caramel</span>{" "}
-              depuis 2011
+            {/* Clean, Modern Headline */}
+            <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-[3.65rem] text-caramel-dark leading-[1.12] tracking-tight max-w-xl">
+              TOFFIA <br /> La Passion du{" "}
+              <span className="text-caramel-gold">Caramel</span> depuis 2011
             </h1>
 
-            {/* High-end magazine-style editorial paragraph */}
-            <p className="text-lg md:text-xl text-caramel-dark/75 leading-relaxed max-w-lg mt-6">
-              L'excellence d'un savoir-faire authentique. Explorez notre{" "}
+            {/* Editorial Description with Clickable Inline Links */}
+            <p className="text-base sm:text-lg md:text-xl text-caramel-dark/80 leading-relaxed max-w-lg mt-6 font-normal">
+              L&apos;excellence d&apos;un savoir-faire authentique. Explorez notre{" "}
               <Link
                 href="/produits"
-                className="font-semibold text-caramel-900 underline underline-offset-4 decoration-caramel-gold/50 hover:decoration-caramel-gold hover:text-caramel-gold transition-all duration-300"
+                className="font-bold text-caramel-900 underline underline-offset-4 decoration-caramel-gold/60 hover:text-caramel-gold hover:decoration-caramel-gold transition-colors duration-200"
               >
                 collection de produits
               </Link>{" "}
-              pensée pour les gourmands et les professionnels, ou plongez au cœur
-              de{" "}
+              pensée pour les gourmands et les professionnels, ou plongez au cœur de{" "}
               <Link
                 href="/a-propos"
-                className="font-semibold text-caramel-900 underline underline-offset-4 decoration-caramel-gold/50 hover:decoration-caramel-gold hover:text-caramel-gold transition-all duration-300"
+                className="font-bold text-caramel-900 underline underline-offset-4 decoration-caramel-gold/60 hover:text-caramel-gold hover:decoration-caramel-gold transition-colors duration-200"
               >
                 notre histoire
               </Link>
@@ -100,46 +93,37 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          {/* Right Column: Product Showcase & Subtle Morphing Glow */}
-          <div className="order-2 lg:order-2 lg:col-span-5 relative flex flex-col items-center justify-center w-full min-h-[250px] sm:min-h-[320px] lg:min-h-[460px]">
+          {/* ── Right Column: Clean Large Product Image Showcase (No Dots/Squares) ── */}
+          <div className="order-2 lg:order-2 lg:col-span-6 relative flex flex-col items-center justify-center w-full">
 
-            {/* Subtle Morphing Blob Background */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`blob-${current.id}`}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{ opacity: 0.65, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className={`w-52 h-52 sm:w-72 sm:h-72 lg:w-[340px] lg:h-[340px] rounded-full filter blur-[50px] sm:blur-[65px] animate-morph-blob ${current.blobClass}`}
-                  aria-hidden="true"
-                />
-              </AnimatePresence>
-            </div>
+            {/* Main Product Showcase Container */}
+            <div className="relative w-full max-w-lg sm:max-w-xl aspect-[16/11] sm:aspect-[16/10] flex items-center justify-center">
 
-            {/* Cut-out Product Image */}
-            <div className="relative w-full max-w-xs sm:max-w-sm lg:max-w-md aspect-square flex items-center justify-center z-10 animate-float-slow">
+              {/* Soft Golden Glow Ring behind image */}
+              <div className="absolute inset-4 bg-caramel-gold/15 rounded-full blur-2xl pointer-events-none" />
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={current.id}
-                  initial={{ opacity: 0, scale: 0.85, rotate: -3 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  exit={{ opacity: 0, scale: 0.88, rotate: 3 }}
-                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-52 h-52 sm:w-72 sm:h-72 lg:w-[350px] lg:h-[350px] flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0.94, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: -10 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative w-full h-full flex items-center justify-center"
                 >
                   <Image
                     src={current.image}
-                    alt={current.name}
+                    alt={`Gamme ${current.name} TOFFIA CNL Caramel`}
                     fill
-                    sizes="(max-width: 768px) 240px, 380px"
-                    className="object-contain drop-shadow-[0_15px_25px_rgba(92,37,24,0.16)]"
+                    sizes="(max-width: 768px) 100vw, 620px"
+                    className="object-contain object-center drop-shadow-[0_16px_28px_rgba(92,37,24,0.18)]"
                     priority
                   />
                 </motion.div>
               </AnimatePresence>
+
             </div>
+
           </div>
 
         </div>
