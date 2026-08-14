@@ -158,7 +158,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                               <Link
                                 key={cat.id}
                                 href={cat.href}
-                                onClick={onClose}
+                                onClick={() => {
+                                  onClose();
+                                  if (pathname.startsWith("/produits")) {
+                                    setTimeout(() => {
+                                      const el = document.getElementById(cat.id);
+                                      if (el) {
+                                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                      }
+                                    }, 100);
+                                  }
+                                }}
                                 className="flex items-center justify-between py-2.5 px-4 rounded-xl text-sm text-caramel-100 hover:text-cream hover:bg-caramel-700/40 transition-all duration-150 group"
                               >
                                 <span>{cat.name}</span>

@@ -24,7 +24,7 @@ export default function AboutStory({ className }: AboutStoryProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="w-full flex items-center justify-center"
           >
-            <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden bg-caramel-100/50 flex items-center justify-center p-8 sm:p-12">
+            <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden flex items-center justify-center p-8 sm:p-12">
               <Image
                 src="/CnlLogo.png"
                 alt="Logo officiel CNL Caramel TOFFIA"
@@ -49,8 +49,9 @@ export default function AboutStory({ className }: AboutStoryProps) {
             </h2>
 
             <p className="text-lg text-caramel-dark/80 leading-relaxed max-w-xl">
-              Née à Blida en 2011, l&apos;histoire de CNL Caramel est celle d&apos;une passion authentique pour la confiserie. Ce qui a commencé comme une quête du goût parfait s&apos;est transformé en une véritable institution.
-            </p>
+              Née à Blida en 2011, l'histoire de CNL Caramel est celle d'une passion authentique pour la confiserie et l'artisanat d'excellence. Ce qui a commencé comme une quête rigoureuse du goût parfait et de la texture irrésistible s'est rapidement transformé en une véritable référence algérienne.
+
+              De cette expertise et de cet amour du métier est née notre marque phare, TOFFIA. Fièrement ancrée dans son terroir, notre unité de production façonne jour après jour des caramels liquides, des crèmes onctueuses, des nappages et des pâtes gourmandes. Qu'il s'agisse d'accompagner les artisans pâtissiers et restaurateurs les plus exigeants ou d'émerveiller les passionnés à la maison, nous mettons notre savoir-faire au service de créations authentiques et généreuses.</p>
           </motion.div>
         </div>
 
@@ -69,8 +70,9 @@ export default function AboutStory({ className }: AboutStoryProps) {
             </h2>
 
             <p className="text-lg text-caramel-dark/80 leading-relaxed max-w-xl">
-              Profondément ancrée dans ses racines, notre maison perpétue un savoir-faire unique, alliant tradition et exigence, pour offrir à chaque création une texture et des saveurs d&apos;exception.
-            </p>
+              Profondément ancrée dans ses origines, notre maison perpétue un savoir-faire unique qui allie la noblesse des méthodes traditionnelles à la précision des technologies modernes.
+
+              Chez CNL Caramel, nous croyons fermement qu'un caramel d'exception naît du respect absolu des ingrédients, du temps et du goût. De la sélection rigoureuse de nos matières premières (noisettes, pistaches, cacahuètes torréfiées et ingrédients de premier choix) jusqu'à la maîtrise parfaite des cuissons, chaque étape est pensée avec exigence. Notre engagement quotidien : maintenir une qualité irréprochable tout en faisant rayonner l'excellence du caramel algérien, ici et ailleurs.</p>
           </motion.div>
 
           {/* Right Column (Second Image): order-1 md:order-2 */}
@@ -81,7 +83,7 @@ export default function AboutStory({ className }: AboutStoryProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="order-1 md:order-2 w-full"
           >
-            <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden bg-caramel-900/5">
+            <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden">
               <Image
                 src="/caramel1.png"
                 alt="Savoir-faire et fabrication artisanale TOFFIA"

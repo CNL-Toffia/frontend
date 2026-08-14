@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 import { products, productCategories, Product } from "@/data/products";
 import ProductCard from "@/components/ui/ProductCard";
@@ -29,6 +29,32 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
       .filter((group) => group.products.length > 0);
   }, []);
 
+  // Smooth scroll handler for both hash (#category-id) and query (?categorie=...)
+  useEffect(() => {
+    const scrollToTarget = () => {
+      const hash = window.location.hash.replace("#", "");
+      const params = new URLSearchParams(window.location.search);
+      const catParam = params.get("categorie");
+      const targetId = hash || catParam;
+
+      if (targetId) {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    };
+
+    // Execute on initial render
+    const timer = setTimeout(scrollToTarget, 150);
+    window.addEventListener("hashchange", scrollToTarget);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("hashchange", scrollToTarget);
+    };
+  }, []);
+
   return (
     <section className={`pb-16 lg:pb-24 ${className || ""}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,6 +62,7 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
           {categorizedProducts.map((group) => (
             <CategoryRow
               key={group.id}
+              id={group.id}
               label={group.label}
               products={group.products}
             />
@@ -49,11 +76,12 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
 /* ─── Category Row with horizontal scroll ────────────────────────── */
 
 interface CategoryRowProps {
+  id: string;
   label: string;
   products: Product[];
 }
 
-function CategoryRow({ label, products }: CategoryRowProps) {
+function CategoryRow({ id, label, products }: CategoryRowProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const showArrow = products.length > 3;
 
@@ -62,7 +90,7 @@ function CategoryRow({ label, products }: CategoryRowProps) {
   };
 
   return (
-    <div>
+    <div id={id} className="scroll-mt-28 sm:scroll-mt-36">
       {/* Category Title */}
       <div className="flex items-end justify-between mb-8">
         <h2 className="text-3xl font-bold text-caramel-dark border-b border-caramel-gold/20 pb-4 font-display">

@@ -110,6 +110,15 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                               <Link
                                 key={cat.id}
                                 href={cat.href}
+                                onClick={() => {
+                                  setProductsDropdownOpen(false);
+                                  if (pathname.startsWith("/produits")) {
+                                    const el = document.getElementById(cat.id);
+                                    if (el) {
+                                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                    }
+                                  }
+                                }}
                                 className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-caramel-900/85 hover:bg-[#EBE3D5] hover:text-caramel-900 transition-all duration-150 group"
                               >
                                 <span>{cat.name}</span>
