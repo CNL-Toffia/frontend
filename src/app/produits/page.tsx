@@ -4,13 +4,14 @@ import { Sparkles, PackageCheck, Award, ShieldCheck } from "lucide-react";
 import ProductsGrid from "@/components/sections/ProductsGrid";
 
 export const metadata: Metadata = {
-  title: "Nos Produits & Catalogue Gourmand | TOFFIA — CNL Caramel",
+  title: "Nos Produits & Catalogue Gourmand",
   description:
-    "Explorez notre gamme d'exception : crèmes caramel, crèmes de pistache, noisettes, pâtes à tartiner, nappages et formats professionnels TOFFIA.",
+    "Explorez notre gamme d'exception : crèmes caramel, crèmes de pistache, noisettes, pâtes à tartiner, nappages et formats professionnels TOFFIA à Blida.",
   openGraph: {
-    title: "Catalogue Produits TOFFIA — Caramels & Pâtes Gourmandes",
+    title: "Nos Produits & Catalogue Gourmand | TOFFIA — CNL Caramel",
     description:
       "La référence algérienne du caramel artisanal et des préparations pâtissières professionnelles.",
+    url: "https://toffiacaramel-dz.com/produits",
     images: [
       {
         url: "/caramel2.png",
@@ -20,6 +21,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: {
+    canonical: "https://toffiacaramel-dz.com/produits",
+  },
 };
 
 export default function ProductsPage() {
@@ -27,7 +31,6 @@ export default function ProductsPage() {
     <main className="flex-1 flex flex-col w-full bg-cream">
       {/* Page Header Banner */}
       <section className="relative pt-12 pb-14 lg:pt-20 lg:pb-16 bg-gradient-to-b from-caramel-100/50 via-caramel-50/30 to-cream border-b border-caramel-gold/15 overflow-hidden">
-        {/* Ambient glow */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-caramel-gold/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -45,7 +48,6 @@ export default function ProductsPage() {
             façonnées pour le plaisir familial et l'exigence des chefs pâtissiers.
           </p>
 
-          {/* Quick value badges */}
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-caramel-900/80 pt-4 border-t border-caramel-gold/20 max-w-3xl mx-auto">
             <div className="flex items-center gap-2">
               <Award className="w-4 h-4 text-caramel-gold" />

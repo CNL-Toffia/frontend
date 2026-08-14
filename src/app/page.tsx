@@ -5,21 +5,25 @@ import BentoProducts from "@/components/sections/BentoProducts";
 import RecipesCarousel from "@/components/sections/RecipesCarousel";
 
 export const metadata: Metadata = {
-  title: "TOFFIA — La Passion du Caramel depuis 2011 | CNL Caramel",
+  title: "Accueil | TOFFIA — La Passion du Caramel depuis 2011",
   description:
-    "Découvrez TOFFIA, caramels, pâtes à tartiner et nappages artisanaux algériens depuis 2011. Crème caramel, pistache, noisette et gamme professionnelle.",
+    "Découvrez TOFFIA, caramels artisanaux, pâtes à tartiner et nappages gastronomiques algériens depuis 2011 à Blida. Crème caramel, crème de pistache et gamme professionnelle.",
   openGraph: {
     title: "TOFFIA — La Passion du Caramel depuis 2011 | CNL Caramel",
     description:
       "Maison artisanale fondée en 2011 à Blida. Caramels fondants, crèmes de pistache et nappages d'exception.",
+    url: "https://toffiacaramel-dz.com",
     images: [
       {
         url: "/caramel3.png",
         width: 1200,
         height: 630,
-        alt: "TOFFIA — La Passion du Caramel",
+        alt: "Caramel d'exception TOFFIA",
       },
     ],
+  },
+  alternates: {
+    canonical: "https://toffiacaramel-dz.com",
   },
 };
 
