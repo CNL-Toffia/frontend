@@ -1,10 +1,9 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Metadata } from "next";
-import { Sparkles, PackageCheck, Award, ShieldCheck } from "lucide-react";
 import ProductsGrid from "@/components/sections/ProductsGrid";
 
 export const metadata: Metadata = {
-  title: "Nos Produits & Catalogue Gourmand",
+  title: "Nos Produits & Catalogue Gourmand | TOFFIA — CNL Caramel",
   description:
     "Explorez notre gamme d'exception : crèmes caramel, crèmes de pistache, noisettes, pâtes à tartiner, nappages et formats professionnels TOFFIA à Blida.",
   openGraph: {
@@ -29,52 +28,26 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <main className="flex-1 flex flex-col w-full bg-cream">
-      {/* Page Header Banner */}
-      <section className="relative pt-12 pb-14 lg:pt-20 lg:pb-16 bg-gradient-to-b from-caramel-100/50 via-caramel-50/30 to-cream border-b border-caramel-gold/15 overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-caramel-gold/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-caramel-100 border border-caramel-gold/30 text-xs font-semibold uppercase tracking-wider text-caramel-900 mb-4 shadow-sm">
-            <Sparkles className="w-4 h-4 text-caramel-gold" />
-            <span>Catalogue Officiel TOFFIA</span>
-          </div>
-
-          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-caramel-900 leading-tight mb-4">
+      {/* Editorial Page Header */}
+      <section className="relative pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14 bg-cream overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-caramel-dark leading-[1.1] tracking-tight mb-6">
             Nos Produits
           </h1>
 
-          <p className="text-base sm:text-xl text-caramel-900/80 max-w-2xl mx-auto leading-relaxed mb-8">
-            Une gamme complète de caramels, crèmes onctueuses et pâtes gourmandes,
-            façonnées pour le plaisir familial et l'exigence des chefs pâtissiers.
+          <p className="text-lg md:text-xl text-caramel-dark/80 leading-relaxed max-w-2xl mx-auto">
+            Découvrez notre collection de caramels artisanaux, crèmes onctueuses
+            et pâtes gourmandes, façonnées pour le plaisir familial et
+            l&apos;exigence des chefs pâtissiers.
           </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-bold text-caramel-900/80 pt-4 border-t border-caramel-gold/20 max-w-3xl mx-auto">
-            <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-caramel-gold" />
-              <span>Cuisson Artisanale</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-caramel-gold" />
-              <span>Ingrédients Sélectionnés</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <PackageCheck className="w-4 h-4 text-caramel-gold" />
-              <span>Formats Particuliers & Pro</span>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Interactive Filterable Products Grid */}
-      <Suspense
-        fallback={
-          <div className="py-20 text-center text-caramel-700 font-semibold">
-            Chargement du catalogue...
-          </div>
-        }
-      >
-        <ProductsGrid />
-      </Suspense>
+      {/* Gold Separator */}
+      <div className="w-11/12 max-w-5xl mx-auto border-t border-caramel-gold/20 mb-16" />
+
+      {/* Products by Category */}
+      <ProductsGrid />
     </main>
   );
 }

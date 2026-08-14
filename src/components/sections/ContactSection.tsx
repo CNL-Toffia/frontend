@@ -389,7 +389,7 @@ export default function ContactSection({
                   <span className="font-bold text-caramel-dark block text-xs uppercase tracking-wider mb-0.5">
                     Horaires d&apos;ouverture
                   </span>
-                  <span className="text-caramel-dark/75">Dimanche – Jeudi : 08h30 – 16h30</span>
+                  <span className="text-caramel-dark/75">Dimanche – Jeudi : 08h00 – 16h00</span>
                 </div>
               </div>
             </div>
