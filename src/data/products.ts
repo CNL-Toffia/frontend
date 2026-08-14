@@ -21,7 +21,7 @@ export interface Product {
 }
 
 export const productCategories = [
-  { id: "tous", label: "Tous" },
+  { id: "tous", label: "Tous les produits" },
   { id: "caramels-liquides", label: "Caramels Liquides" },
   { id: "pates-a-tartiner", label: "Pâtes à Tartiner" },
   { id: "nappages", label: "Nappages" },
@@ -38,9 +38,9 @@ export const products: Product[] = [
     shortDescription: "Onctuosité incomparable et goût pur de caramel doré cuit à point.",
     description:
       "La recette signature de TOFFIA. Une crème caramel fondante à la texture veloutée, idéale pour tartiner, napper vos crêpes ou sublimer vos créations pâtissières.",
-    image: "/images/products/creme-caramel.png",
+    image: "/caramel2.png",
     isBestSeller: true,
-    tag: "Best-seller",
+    tag: "Best-Seller",
     ingredients: "Sucre caramélisé, lait concentré, beurre doux, arôme naturel de vanille.",
     usage: "Tartinade, nappage dessert, fourrage pâtisserie.",
   },
@@ -53,9 +53,9 @@ export const products: Product[] = [
     shortDescription: "Une pâte onctueuse aux pistaches soigneusement sélectionnées et torréfiées.",
     description:
       "Une crème gourmande d'exception alliant la douceur lactée à la puissance aromatique des pistaches de première qualité. Une expérience gustative luxueuse.",
-    image: "/images/products/creme-pistache.png",
+    image: "/caramel4.png",
     isBestSeller: true,
-    tag: "Coup de cœur",
+    tag: "Coup de Cœur",
     ingredients: "Pistaches sélectionnées (min 30%), sucre, huile végétale noble, lait écrémé en poudre.",
     usage: "Dégustation pure, garniture de macarons, tartes gourmandes.",
   },
@@ -68,7 +68,7 @@ export const products: Product[] = [
     shortDescription: "La douceur d'un caramel fondant relevé par le croquant des amandes torréfiées.",
     description:
       "Un équilibre parfait entre le fondant du caramel traditionnel cuit lentement et le croquant généreux d'amandes entières dorées.",
-    image: "/images/products/caramel-amandes.png",
+    image: "/caramel3.png",
     isBestSeller: true,
     tag: "Incontournable",
     ingredients: "Caramel au beurre doux, amandes torréfiées entières, pointe de sel.",
@@ -83,7 +83,7 @@ export const products: Product[] = [
     shortDescription: "Texture fine et saveur intense de noisettes grillées.",
     description:
       "Conçue spécialement pour les amateurs de noisettes et les artisans pâtissiers cherchant une texture stable et fondante pour leurs fourrages.",
-    image: "/images/products/creme-noisette.png",
+    image: "/caramel1.png",
     isBestSeller: false,
     ingredients: "Noisettes grillées, cacao fin, lait écrémé, sucre caramélisé.",
     usage: "Fourrage croissants, brioches, choux et entremets.",
@@ -97,7 +97,7 @@ export const products: Product[] = [
     shortDescription: "100% énergie et saveur pure d'arachides grillées.",
     description:
       "Une texture crémeuse et riche, préparée à partir de cacahuètes rigoureusement sélectionnées et torréfiées à cœur pour un plaisir sain et gourmand.",
-    image: "/images/products/beurre-cacahuetes.png",
+    image: "/caramel2.png",
     isBestSeller: false,
     ingredients: "Cacahuètes torréfiées sélectionnées, pincée de sel marin.",
     usage: "Tartine petit-déjeuner, smoothies, cuisine & pâtisserie.",
@@ -111,7 +111,7 @@ export const products: Product[] = [
     shortDescription: "Saveur riche et gourmande au mariage caramel-cacahuète.",
     description:
       "Le mariage réconfortant du caramel onctueux et de cacahuètes croustillantes pour une texture irrésistible.",
-    image: "/images/products/caramel-cacahuetes.png",
+    image: "/caramel3.png",
     isBestSeller: false,
     ingredients: "Caramel onctueux, éclats de cacahuètes torréfiées.",
     usage: "Dégustation directe, snacking gourmand.",
@@ -125,7 +125,7 @@ export const products: Product[] = [
     shortDescription: "Brillance éclatante et tenue parfaite pour entremets et glaces.",
     description:
       "Nappage fluide et brillant au goût authentique de caramel cuit. Prêt à l'emploi avec une excellente tenue au froid positif.",
-    image: "/images/products/nappage-caramel.png",
+    image: "/caramel4.png",
     isBestSeller: false,
     ingredients: "Sirop de caramel pur, gélifiant végétal, arôme naturel.",
     usage: "Glaçage d'entremets, nappage de glaces et coupes de desserts.",
@@ -139,9 +139,9 @@ export const products: Product[] = [
     shortDescription: "Conditionnements professionnels adaptés aux boulangeries, pâtisseries et glaciers.",
     description:
       "CNL Caramel propose aux professionnels des volumes adaptés, une régularité technique irréprochable et un accompagnement sur-mesure pour leurs productions quotidiennes.",
-    image: "/images/products/gamme-pro.png",
+    image: "/caramel1.png",
     isBestSeller: false,
-    tag: "Pro",
+    tag: "Gamme Pro",
     ingredients: "Formulations adaptées aux contraintes industrielles et artisanales.",
     usage: "Pâtisserie industrielle, ateliers artisanaux, hôtellerie & restauration.",
   },
