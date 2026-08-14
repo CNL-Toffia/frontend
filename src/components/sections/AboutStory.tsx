@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, History, MapPin, Award, CheckCircle2 } from "lucide-react";
 
 export interface AboutStoryProps {
   className?: string;
@@ -11,113 +11,59 @@ export interface AboutStoryProps {
 
 export default function AboutStory({ className }: AboutStoryProps) {
   return (
-    <section className={`py-16 lg:py-24 bg-cream ${className || ""}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Visual Story Frame (5 cols) */}
+    <section className={`py-12 sm:py-16 bg-cream relative overflow-hidden ${className || ""}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* Left Side: Premium Image Container */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full"
           >
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-caramel-gold/30 via-caramel-700/20 to-transparent blur-md" />
-
-              <div className="relative rounded-3xl overflow-hidden border-2 border-caramel-gold/30 bg-cream shadow-warm-lg p-3">
-                <div className="relative h-[360px] sm:h-[440px] w-full rounded-2xl overflow-hidden bg-caramel-900/5">
-                  <Image
-                    src="/caramel1.png"
-                    alt="Atelier de fabrication et histoire de CNL Caramel TOFFIA"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 450px"
-                    className="object-cover object-center hover:scale-105 transition-transform duration-700 ease-out"
-                    priority
-                  />
-                </div>
-
-                {/* Floating Heritage Tag */}
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-cream/95 backdrop-blur-md border border-caramel-gold/30 shadow-lg flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-caramel-900 flex items-center justify-center text-caramel-gold shadow-sm flex-shrink-0">
-                      <History className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-caramel-900">
-                        Fondée en 2011 à Blida
-                      </p>
-                      <p className="text-[11px] text-caramel-700">
-                        15+ années d'excellence artisanale
-                      </p>
-                    </div>
-                  </div>
-                  <span className="w-2.5 h-2.5 rounded-full bg-caramel-gold animate-pulse" />
-                </div>
-              </div>
+            <div className="relative w-full aspect-[4/5] rounded-2xl shadow-xl overflow-hidden border border-caramel-gold/20 bg-caramel-900/5 group">
+              <Image
+                src="/caramel1.png"
+                alt="Histoire et racines artisanales de CNL Caramel TOFFIA à Blida"
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                priority
+              />
             </div>
           </motion.div>
 
-          {/* Right Column: Narrative (7 cols) */}
+          {/* Right Side: Narrative Content */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col items-start"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col justify-center items-start text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-caramel-100 border border-caramel-gold/30 text-xs font-semibold uppercase tracking-wider text-caramel-900 mb-4">
-              <MapPin className="w-3.5 h-3.5 text-caramel-gold" />
-              <span>Origine & Racines</span>
-            </div>
-
-            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-caramel-900 leading-tight mb-6">
-              Une ambition née au cœur du terroir de Blida
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-caramel-dark leading-[1.1] font-display">
+              TOFFIA — La passion du Caramel depuis 2011.
             </h2>
 
-            <p className="text-base sm:text-lg text-caramel-900/85 leading-relaxed mb-6">
-              Fondée en <strong>2011 à Blida</strong>, la société{" "}
-              <strong>CNL Caramel</strong> est née d'une conviction simple : le
-              caramel mérite d'être travaillé avec la même rigueur, la même
-              passion et les mêmes matières nobles qu'un grand produit de haute
-              gastronomie.
-            </p>
+            <p className="text-lg md:text-xl text-caramel-dark/80 leading-relaxed max-w-2xl mt-6">
+              Fondée en 2011, CNL Caramel s’est rapidement imposée comme une référence algérienne dans la fabrication de caramel et de produits dérivés. Installée à Blida, notre unité de production allie savoir-faire artisanal, technologie moderne et exigence de qualité pour offrir des produits au goût authentique et à la texture irrésistible.
 
-            <p className="text-sm sm:text-base text-caramel-900/75 leading-relaxed mb-8">
-              Depuis plus d'une décennie, notre marque <strong>TOFFIA</strong>{" "}
-              façonne des crèmes onctueuses, des caramels fondants et des pâtes à
-              tartiner d'exception. Nous accompagnons aussi bien les familles
-              gourmandes dans leur quotidien que les plus grands artisans
-              boulangers, pâtissiers et glaciers d'Algérie.
-            </p>
+              De cette expertise est née TOFFIA, notre marque phare, reconnue pour son caramel onctueux et ses créations gourmandes destinées aussi bien aux professionnels qu’aux passionnés de pâtisserie. Qu’il s’agisse de caramel liquide, de pâtes à tartiner, de nappages ou de préparations sucrées, chaque produit TOFFIA est le fruit d’un engagement constant envers la qualité, la pureté et la créativité.
 
-            {/* Milestones / Key Facts */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full pt-6 border-t border-caramel-gold/20">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-caramel-gold flex-shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="text-sm font-bold text-caramel-900">
-                    Maîtrise du Goût Authentique
-                  </h4>
-                  <p className="text-xs text-caramel-700 mt-0.5">
-                    Caramélisation lente au beurre doux et arômes naturels.
-                  </p>
-                </div>
-              </div>
+              Chez CNL Caramel, nous croyons qu’un caramel d’exception commence par le respect des ingrédients, du temps et du goût.
+              Notre mission : faire rayonner l’excellence du caramel algérien, ici et ailleurs.</p>
 
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-caramel-gold flex-shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="text-sm font-bold text-caramel-900">
-                    Partenaire des Professionnels
-                  </h4>
-                  <p className="text-xs text-caramel-700 mt-0.5">
-                    Stabilité technique et conditionnements adaptés aux ateliers.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <Link
+              href="/produits"
+              className="inline-flex items-center gap-2 border-b border-caramel-gold pb-1 uppercase tracking-widest text-sm font-semibold text-caramel-dark hover:text-caramel-gold transition-colors duration-300 mt-8 group"
+            >
+              <span>Découvrir nos créations</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </Link>
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -66,16 +66,21 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Editorial Headline & Inline Linked Paragraph */}
-          <div className="order-1 lg:order-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
-            <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-[4.25rem] text-caramel-900 leading-tight tracking-tight mb-6 max-w-2xl">
+          {/* Left Column: Editorial Headline & Magazine Subtitle with Subtle Entrance Animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="order-1 lg:order-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full"
+          >
+            <h1 className="font-display font-bold text-4xl sm:text-6xl lg:text-[4.25rem] text-caramel-dark leading-[1.1] tracking-tight max-w-2xl">
               TOFFIA — La Passion du{" "}
-              <span className="text-caramel-gold">Caramel</span>{" "}
+              <span className="text-caramel-gold font-bold">Caramel</span>{" "}
               depuis 2011
             </h1>
 
-            {/* Editorial Paragraph with Integrated Inline Links */}
-            <p className="text-lg sm:text-xl text-caramel-dark/80 font-normal leading-relaxed max-w-xl">
+            {/* High-end magazine-style editorial paragraph */}
+            <p className="text-lg md:text-xl text-caramel-dark/75 leading-relaxed max-w-lg mt-6">
               L'excellence d'un savoir-faire authentique. Explorez notre{" "}
               <Link
                 href="/produits"
@@ -93,7 +98,7 @@ export default function Hero() {
               </Link>
               .
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Column: Product Showcase & Subtle Morphing Glow */}
           <div className="order-2 lg:order-2 lg:col-span-5 relative flex flex-col items-center justify-center w-full min-h-[250px] sm:min-h-[320px] lg:min-h-[460px]">

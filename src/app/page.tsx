@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
-import DualMarquee from "@/components/sections/DualMarquee";
+import Signature from "@/components/sections/Signature";
+import Factory from "@/components/sections/Factory";
 
 export const metadata: Metadata = {
   title: "Accueil | TOFFIA — La Passion du Caramel depuis 2011",
@@ -28,11 +29,20 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main className="flex-1 flex flex-col w-full">
-      {/* 1. Typography-focused Hero — pure beige, no background image */}
+      {/* 1. Typography-focused Hero */}
       <Hero />
 
+      {/* Elegant Section Divider */}
+      <div className="w-11/12 max-w-5xl mx-auto border-t border-caramel-gold/20 my-8" />
+
       {/* 2. Dual Scrolling Image Marquee with dual CTAs */}
-      <DualMarquee />
+      <Signature />
+
+      {/* Elegant Section Divider */}
+      <div className="w-11/12 max-w-5xl mx-auto border-t border-caramel-gold/20 my-8" />
+
+      {/* 3. Factory & Savoir-faire Section */}
+      <Factory />
     </main>
   );
 }

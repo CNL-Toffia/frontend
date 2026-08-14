@@ -12,9 +12,8 @@ export interface AboutMissionProps {
 export default function AboutMission({ className }: AboutMissionProps) {
   return (
     <section
-      className={`py-20 lg:py-28 bg-caramel-900 text-cream relative overflow-hidden ${
-        className || ""
-      }`}
+      className={`py-20 lg:py-28 bg-caramel-900 text-cream relative overflow-hidden ${className || ""
+        }`}
     >
       {/* Ambient background glows */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-caramel-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -28,11 +27,6 @@ export default function AboutMission({ className }: AboutMissionProps) {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center"
         >
-          {/* Top Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-caramel-700/60 border border-caramel-gold/30 text-xs font-semibold uppercase tracking-wider text-caramel-gold mb-8 shadow-sm">
-            <Sparkles className="w-4 h-4" />
-            <span>Notre Raison d'Être</span>
-          </div>
 
           <Quote className="w-12 h-12 text-caramel-gold/40 mb-6" />
 

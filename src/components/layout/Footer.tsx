@@ -62,14 +62,14 @@ export default function Footer({ className }: FooterProps) {
       {/* Decorative subtle ambient glow */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-caramel-gold/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Main Top Separator Line (Wide w-11/12 with subtle gold gradient) */}
+      {/* Main Top Separator Line */}
       <div className="w-11/12 max-w-7xl mx-auto">
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-caramel-gold/25 to-transparent" />
       </div>
 
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-2 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-8">
+      {/* Main Footer Content with Standard Clean Padding (py-12 sm:py-16) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {/* Column 1: Brand & Narrative */}
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 group w-fit">
@@ -162,7 +162,14 @@ export default function Footer({ className }: FooterProps) {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-caramel-gold flex-shrink-0 mt-0.5" />
                 <span className="leading-snug">
-                  {siteConfig.contact.address}
+                  <a
+                    href="https://maps.app.goo.gl/1itwaj2jUbF7AaAg6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-caramel-gold transition-colors font-medium"
+                  >
+                    {siteConfig.contact.address}
+                  </a>
                 </span>
               </div>
 
@@ -251,11 +258,11 @@ export default function Footer({ className }: FooterProps) {
             </p>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Bar with Distinct Top Separator Line */}
-        <div className="w-full mt-6 pt-4 border-t border-caramel-gold/15 flex justify-center items-center text-center text-xs text-caramel-700">
-          <p>{siteConfig.legal.copyright}</p>
-        </div>
+      {/* Clean Copyright Bottom Bar with exact py-4 and top border */}
+      <div className="w-full border-t border-caramel-gold/15 py-4 flex justify-center items-center text-center text-xs text-caramel-700">
+        <p className="m-0 leading-none">{siteConfig.legal.copyright}</p>
       </div>
     </footer>
   );
