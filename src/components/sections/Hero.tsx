@@ -16,21 +16,21 @@ export interface FlavorSlide {
 const flavorSlides: FlavorSlide[] = [
   {
     id: "caramel",
-    image: "/product1.png",
+    image: "/multipProduct1.png",
     name: "Caramel Signature",
     blobClass: "bg-caramel-gold/20",
     ambientGlow: "rgba(236, 163, 21, 0.12)",
   },
   {
     id: "noisette",
-    image: "/product2.png",
+    image: "/multipProduct2.png",
     name: "Pâte de Noisette",
     blobClass: "bg-[#8B5A2B]/15",
     ambientGlow: "rgba(139, 90, 43, 0.10)",
   },
   {
     id: "pistache",
-    image: "/product3.png",
+    image: "/multipProduct3.png",
     name: "Crème de Pistache",
     blobClass: "bg-[#93C572]/18",
     ambientGlow: "rgba(147, 197, 114, 0.12)",
@@ -65,7 +65,7 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* Left Column: Editorial Headline & Magazine Subtitle with Subtle Entrance Animation */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -102,7 +102,7 @@ export default function Hero() {
 
           {/* Right Column: Product Showcase & Subtle Morphing Glow */}
           <div className="order-2 lg:order-2 lg:col-span-5 relative flex flex-col items-center justify-center w-full min-h-[250px] sm:min-h-[320px] lg:min-h-[460px]">
-            
+
             {/* Subtle Morphing Blob Background */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <AnimatePresence mode="wait">

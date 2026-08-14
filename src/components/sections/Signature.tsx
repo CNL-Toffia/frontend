@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export interface SignatureProps {
   className?: string;
@@ -22,7 +23,7 @@ const gamme2Products = [
   { id: "g2-3", src: "/caramel1.png", alt: "Caramel Liquide Pâtissier TOFFIA" },
 ];
 
-// 4× duplication for a seamless infinite loop
+// 4× duplication for a seamless continuous marquee loop
 const track1 = [
   ...gamme1Products,
   ...gamme1Products,
@@ -36,21 +37,15 @@ const track2 = [
   ...gamme2Products,
 ];
 
-/* ─────────────────────────────────────────────
-   ProductImage
-   • Self-contained slot with "product-img-slot" sentinel class
-   • Scales smoothly on group-hover without clipping
-   • Pauses track when hovered via [&:has(.product-img-slot:hover)]
-   ───────────────────────────────────────────── */
 function ProductImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="product-img-slot group relative flex-shrink-0 w-36 sm:w-44 lg:w-48 h-36 sm:h-44 lg:h-48 flex items-center justify-center overflow-visible cursor-pointer">
-      <div className="relative w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.25] group-hover:z-50 group-hover:drop-shadow-2xl">
+    <div className="product-img-slot group relative flex-shrink-0 w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 flex items-center justify-center cursor-pointer">
+      <div className="relative w-full h-full transition-transform duration-500 ease-out group-hover:scale-115 group-hover:drop-shadow-xl">
         <Image
           src={src}
           alt={alt}
           fill
-          sizes="(max-width: 768px) 150px, 200px"
+          sizes="(max-width: 640px) 120px, (max-width: 1024px) 150px, 180px"
           className="object-contain select-none pointer-events-none"
           draggable={false}
         />
@@ -62,44 +57,44 @@ function ProductImage({ src, alt }: { src: string; alt: string }) {
 export default function Signature({ className }: SignatureProps) {
   return (
     <section
-      className={`pt-10 pb-20 sm:pt-14 sm:pb-24 lg:pt-16 lg:pb-28 bg-cream relative overflow-hidden ${
+      className={`py-12 sm:py-16 lg:py-20 relative overflow-hidden ${
         className || ""
       }`}
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 w-full">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
         {/* ── Section Header ── */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-caramel-900 tracking-tight mb-3">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-caramel-900 tracking-tight mb-3">
             Nos Créations & Spécialités
           </h2>
 
-          <p className="text-sm sm:text-base text-caramel-900/65 max-w-md mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-caramel-900/70 max-w-lg mx-auto leading-relaxed">
             Découvrez nos saveurs artisanales créées avec passion et minutie
             à Blida depuis 2011.
           </p>
         </div>
 
-        {/* ── Gammes container — gap-32 forces massive visual separation ── */}
-        <div className="flex flex-col gap-32 w-full">
+        {/* ── Gammes container ── */}
+        <div className="flex flex-col gap-10 sm:gap-14 w-full">
 
-          {/* ── Gamme 1 row ── */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 py-2">
-            <div className="flex flex-col items-start justify-center flex-shrink-0 sm:w-44 md:w-52 sm:pr-4 sm:border-r sm:border-caramel-gold/25">
-              <span className="text-3xl md:text-5xl font-bold tracking-tight text-caramel-gold font-display">
+          {/* ── Gamme 1 Row ── */}
+          <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8 bg-cream-100/30 rounded-2xl p-4 sm:p-6 border border-caramel-gold/15">
+            <div className="flex md:flex-col items-baseline md:items-start justify-between md:justify-center flex-shrink-0 md:w-44 lg:w-48 pb-2 md:pb-0 border-b md:border-b-0 md:border-r border-caramel-gold/20 md:pr-6">
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-caramel-gold font-display">
                 Gamme 1
               </span>
-              <span className="font-display font-medium text-xs sm:text-sm text-caramel-900/70 tracking-wide mt-1">
+              <span className="font-display font-medium text-xs sm:text-sm text-caramel-dark/75 tracking-wide mt-0.5 md:mt-1">
                 Crèmes & Pâtes
               </span>
             </div>
 
-            {/* Marquee 1 (Left to Right, 40s duration, generous py-12 to prevent zoom clipping) */}
+            {/* Marquee 1 */}
             <div className="relative flex-1 overflow-hidden">
               <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-12 bg-gradient-to-r from-cream to-transparent z-20 pointer-events-none" />
               <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-12 bg-gradient-to-l from-cream to-transparent z-20 pointer-events-none" />
 
-              <div className="flex items-center w-max gap-8 sm:gap-14 py-12 will-change-transform animate-marquee-ltr [&:has(.product-img-slot:hover)]:[animation-play-state:paused]">
+              <div className="flex items-center w-max gap-6 sm:gap-10 py-3 will-change-transform animate-marquee-ltr [&:has(.product-img-slot:hover)]:[animation-play-state:paused]">
                 {track1.map((item, idx) => (
                   <ProductImage
                     key={`t1-${item.id}-${idx}`}
@@ -111,23 +106,23 @@ export default function Signature({ className }: SignatureProps) {
             </div>
           </div>
 
-          {/* ── Gamme 2 row ── */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 py-2">
-            <div className="flex flex-col items-start justify-center flex-shrink-0 sm:w-44 md:w-52 sm:pr-4 sm:border-r sm:border-caramel-gold/25">
-              <span className="text-3xl md:text-5xl font-bold tracking-tight text-caramel-gold font-display">
+          {/* ── Gamme 2 Row ── */}
+          <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8 bg-cream-100/30 rounded-2xl p-4 sm:p-6 border border-caramel-gold/15">
+            <div className="flex md:flex-col items-baseline md:items-start justify-between md:justify-center flex-shrink-0 md:w-44 lg:w-48 pb-2 md:pb-0 border-b md:border-b-0 md:border-r border-caramel-gold/20 md:pr-6">
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-caramel-gold font-display">
                 Gamme 2
               </span>
-              <span className="font-display font-medium text-xs sm:text-sm text-caramel-900/70 tracking-wide mt-1">
+              <span className="font-display font-medium text-xs sm:text-sm text-caramel-dark/75 tracking-wide mt-0.5 md:mt-1">
                 Nappages & Pro
               </span>
             </div>
 
-            {/* Marquee 2 (Unified Left to Right flow, 40s duration, py-12, hover-pause) */}
+            {/* Marquee 2 */}
             <div className="relative flex-1 overflow-hidden">
               <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-12 bg-gradient-to-r from-cream to-transparent z-20 pointer-events-none" />
               <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-12 bg-gradient-to-l from-cream to-transparent z-20 pointer-events-none" />
 
-              <div className="flex items-center w-max gap-8 sm:gap-14 py-12 will-change-transform animate-marquee-ltr [&:has(.product-img-slot:hover)]:[animation-play-state:paused]">
+              <div className="flex items-center w-max gap-6 sm:gap-10 py-3 will-change-transform animate-marquee-ltr [&:has(.product-img-slot:hover)]:[animation-play-state:paused]">
                 {track2.map((item, idx) => (
                   <ProductImage
                     key={`t2-${item.id}-${idx}`}
@@ -142,31 +137,31 @@ export default function Signature({ className }: SignatureProps) {
         </div>
 
         {/* ── Corporate Narrative ── */}
-        <div className="text-center max-w-2xl mx-auto mt-20 sm:mt-24 mb-10 sm:mb-12 px-4">
-          <p className="text-base sm:text-lg text-caramel-dark/85 font-normal leading-relaxed">
-            Guidés par la passion et l'exigence, nous sélectionnons les meilleurs
-            ingrédients pour vous offrir un caramel d'exception. Une texture
-            parfaite, un goût authentique : l'allié incontournable de vos plus
+        <div className="text-center max-w-2xl mx-auto mt-12 sm:mt-16 mb-8 sm:mb-10 px-2">
+          <p className="text-sm sm:text-base md:text-lg text-caramel-dark/85 font-normal leading-relaxed">
+            Guidés par la passion et l&apos;exigence, nous sélectionnons les meilleurs
+            ingrédients pour vous offrir un caramel d&apos;exception. Une texture
+            parfaite, un goût authentique : l&apos;allié incontournable de vos plus
             belles créations.
           </p>
         </div>
 
-        {/* ── Premium Underlined Action Buttons (No Fill, Separated with gap-8) ── */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mt-10 text-center">
+        {/* ── Action Buttons ── */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-center">
           <Link
             href="/produits"
-            className="inline-flex items-center gap-2 border-b border-caramel-gold pb-1 uppercase tracking-widest text-sm font-semibold text-caramel-dark hover:text-caramel-gold transition-colors duration-300 group"
+            className="inline-flex items-center gap-2 border-b-2 border-caramel-gold/70 pb-1 uppercase tracking-widest text-xs sm:text-sm font-bold text-caramel-dark hover:text-caramel-gold hover:border-caramel-gold transition-all duration-300 group"
           >
             <span>Découvrir la Gamme</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 border-b border-caramel-gold pb-1 uppercase tracking-widest text-sm font-semibold text-caramel-dark hover:text-caramel-gold transition-colors duration-300 group"
+            className="inline-flex items-center gap-2 border-b-2 border-caramel-gold/70 pb-1 uppercase tracking-widest text-xs sm:text-sm font-bold text-caramel-dark hover:text-caramel-gold hover:border-caramel-gold transition-all duration-300 group"
           >
             <span>Catalogue Professionnel</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
 
