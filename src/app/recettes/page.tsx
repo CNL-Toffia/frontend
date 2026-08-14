@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 
 export default function RecipesPage() {
   return (
-    <main className="flex-1 flex flex-col w-full bg-cream">
+    <main className="flex-1 flex flex-col w-full">
       {/* Editorial Page Header */}
-      <section className="relative pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14 bg-cream overflow-hidden">
+      <section className="relative pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-caramel-dark leading-[1.1] tracking-tight mb-5">
             Recettes & Inspirations

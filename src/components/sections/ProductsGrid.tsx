@@ -1,24 +1,15 @@
 "use client";
 
-import React, { useState, useRef, useMemo, useCallback } from "react";
+import React, { useRef, useMemo } from "react";
 import { ChevronRight } from "lucide-react";
 import { products, productCategories, Product } from "@/data/products";
 import ProductCard from "@/components/ui/ProductCard";
-import ProductModal from "@/components/ui/ProductModal";
 
 export interface ProductsGridProps {
   className?: string;
 }
 
 export default function ProductsGrid({ className }: ProductsGridProps) {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleSelectProduct = useCallback((product: Product) => {
-    setSelectedProduct(product);
-    setModalOpen(true);
-  }, []);
-
   // Group products by category (excluding "tous")
   const categorizedProducts = useMemo(() => {
     const categoryOrder = productCategories
@@ -39,7 +30,7 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
   }, []);
 
   return (
-    <section className={`pb-16 lg:pb-24 bg-cream ${className || ""}`}>
+    <section className={`pb-16 lg:pb-24 ${className || ""}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-24">
           {categorizedProducts.map((group) => (
@@ -47,18 +38,10 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
               key={group.id}
               label={group.label}
               products={group.products}
-              onSelectProduct={handleSelectProduct}
             />
           ))}
         </div>
       </div>
-
-      {/* Modal Detailed Product View */}
-      <ProductModal
-        product={selectedProduct}
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-      />
     </section>
   );
 }
@@ -68,10 +51,9 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
 interface CategoryRowProps {
   label: string;
   products: Product[];
-  onSelectProduct: (product: Product) => void;
 }
 
-function CategoryRow({ label, products, onSelectProduct }: CategoryRowProps) {
+function CategoryRow({ label, products }: CategoryRowProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const showArrow = products.length > 3;
 
@@ -109,7 +91,7 @@ function CategoryRow({ label, products, onSelectProduct }: CategoryRowProps) {
             key={product.id}
             className="flex-shrink-0 w-[260px] sm:w-[280px] lg:w-[300px] snap-start"
           >
-            <ProductCard product={product} onSelect={onSelectProduct} />
+            <ProductCard product={product} />
           </div>
         ))}
       </div>

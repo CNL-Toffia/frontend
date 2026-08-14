@@ -25,8 +25,8 @@ const config: Config = {
           red: "#C1272D",
         },
         cream: {
-          DEFAULT: "#FDFBF7",
-          100: "#FBF6EE",
+          DEFAULT: "#F5EFE6",
+          100: "#EBE0D0",
         },
       },
       fontFamily: {

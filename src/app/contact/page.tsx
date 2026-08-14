@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="flex-1 flex flex-col w-full bg-cream">
+    <main className="flex-1 flex flex-col w-full">
       {/* Contact Form & Information */}
       <Suspense fallback={null}>
         <ContactSection />

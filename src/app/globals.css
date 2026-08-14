@@ -14,8 +14,8 @@
   --color-royal-600: #A31F24;
   --color-royal-red: #C1272D;
 
-  --color-cream: #FDFBF7;
-  --color-cream-100: #FBF6EE;
+  --color-cream: #F5EFE6;
+  --color-cream-100: #EBE0D0;
 
   --font-display: var(--font-display), "Outfit", system-ui, sans-serif;
   --font-body: var(--font-body), "Inter", system-ui, sans-serif;
@@ -28,7 +28,7 @@
 }
 
 :root {
-  --background: #FDFBF7;
+  --background: #F5EFE6;
   --foreground: #5C2518;
 }
 
@@ -46,7 +46,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FDFBF7;
+  background: #F5EFE6;
 }
 
 ::-webkit-scrollbar-thumb {

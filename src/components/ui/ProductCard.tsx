@@ -7,13 +7,11 @@ import { Product } from "@/data/products";
 
 export interface ProductCardProps {
   product: Product;
-  onSelect?: (product: Product) => void;
   className?: string;
 }
 
 export default function ProductCard({
   product,
-  onSelect,
   className = "",
 }: ProductCardProps) {
   return (
@@ -22,8 +20,7 @@ export default function ProductCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`group flex flex-col items-center bg-transparent cursor-pointer ${className}`}
-      onClick={() => onSelect?.(product)}
+      className={`group flex flex-col items-center bg-transparent ${className}`}
     >
       {/* Product Name — ABOVE Image */}
       <h3 className="text-xl font-bold text-caramel-dark mb-4 text-center font-display leading-snug">
