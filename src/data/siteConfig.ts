@@ -107,7 +107,7 @@ export const siteConfig: SiteConfig = {
     },
   },
   legal: {
-    copyright: "© 2026 CNL Caramel — Tous droits réservés",
+    copyright: "© 2026 CNL Caramel · Tous droits réservés",
     privacyPolicy: "/politique-de-confidentialite",
   },
 };

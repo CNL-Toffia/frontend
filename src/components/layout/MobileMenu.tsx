@@ -11,11 +11,7 @@ import {
   Phone,
   Mail,
   MapPin,
-  Sparkles,
   ArrowRight,
-  Droplet,
-  Cookie,
-  ChefHat,
 } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -23,13 +19,6 @@ export interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const categoryIcons: Record<string, React.ReactNode> = {
-  "caramels-liquides": <Droplet className="w-4 h-4 text-caramel-gold" />,
-  "pates-a-tartiner": <Cookie className="w-4 h-4 text-caramel-gold" />,
-  nappages: <Sparkles className="w-4 h-4 text-caramel-gold" />,
-  "gamme-pro": <ChefHat className="w-4 h-4 text-caramel-gold" />,
-};
 
 const containerVariants: Variants = {
   closed: {
@@ -155,7 +144,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         />
                       </button>
 
-                      {/* Dropdown items accordion */}
+                      {/* Dropdown items accordion matching PC style with '>' icon */}
                       <AnimatePresence>
                         {productsExpanded && (
                           <motion.div
@@ -170,24 +159,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                                 key={cat.id}
                                 href={cat.href}
                                 onClick={onClose}
-                                className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm text-caramel-100 hover:text-cream hover:bg-caramel-700/30 transition-colors"
+                                className="flex items-center justify-between py-2.5 px-4 rounded-xl text-sm text-caramel-100 hover:text-cream hover:bg-caramel-700/40 transition-all duration-150 group"
                               >
-                                <span className="p-1.5 rounded-md bg-caramel-700/40">
-                                  {categoryIcons[cat.id] || (
-                                    <Sparkles className="w-4 h-4 text-caramel-gold" />
-                                  )}
-                                </span>
                                 <span>{cat.name}</span>
+                                <span className="text-xs font-mono font-bold text-caramel-gold opacity-70 group-hover:opacity-100 transform -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
+                                  &gt;
+                                </span>
                               </Link>
                             ))}
-                            <Link
-                              href="/produits"
-                              onClick={onClose}
-                              className="flex items-center justify-between py-2.5 px-3 mt-1 rounded-lg text-xs font-semibold text-caramel-gold hover:bg-caramel-700/40 transition-colors"
-                            >
-                              <span>Voir tout le catalogue</span>
-                              <ArrowRight className="w-3.5 h-3.5" />
-                            </Link>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -217,7 +196,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <Link
                   href="/produits"
                   onClick={onClose}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-caramel-gold to-caramel-300 text-caramel-900 font-semibold shadow-warm hover:brightness-105 transition-all text-sm"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-gradient-to-r from-caramel-gold to-caramel-300 text-caramel-900 font-semibold shadow-warm hover:brightness-105 transition-all text-sm"
                 >
                   <span>Explorer nos produits</span>
                   <ArrowRight className="w-4 h-4" />

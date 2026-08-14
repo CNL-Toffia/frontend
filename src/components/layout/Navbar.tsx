@@ -5,14 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Menu,
-  Droplet,
-  Cookie,
-  Sparkles,
-  ChefHat,
-  Globe,
-} from "lucide-react";
+import { Menu, Globe } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import MobileMenu from "./MobileMenu";
 
@@ -21,14 +14,6 @@ export interface NavbarProps {
   transparent?: boolean;
 }
 
-const categoryIcons: Record<string, React.ReactNode> = {
-  "caramels-liquides": <Droplet className="w-4 h-4 text-caramel-gold" />,
-  "pates-a-tartiner": <Cookie className="w-4 h-4 text-caramel-gold" />,
-  nappages: <Sparkles className="w-4 h-4 text-caramel-gold" />,
-  "gamme-pro": <ChefHat className="w-4 h-4 text-caramel-gold" />,
-};
-
-// A slightly darker than cream hover token that reads clearly against bg-cream
 const NAV_HOVER = "hover:bg-[#EBE3D5]";
 const NAV_ACTIVE = "bg-[#EBE3D5] border-caramel-gold/30";
 const NAV_BASE = "bg-transparent border-transparent";
@@ -52,20 +37,20 @@ export default function Navbar({ transparent = false }: NavbarProps) {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-transparent py-4">
+      <header className="fixed top-0 left-0 right-0 z-40 bg-transparent py-3 sm:py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo / Brand — Far Left */}
           <Link
             href="/"
             className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-caramel-gold rounded-xl p-1 flex-shrink-0"
           >
-            <div className="relative w-20 h-20 flex-shrink-0">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
               <Image
                 src="/CnlLogo.png"
                 alt="Logo TOFFIA CNL Caramel"
                 width={80}
                 height={80}
-                className="w-20 h-20 object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105"
                 priority
               />
             </div>
@@ -102,7 +87,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                       </span>
                     </Link>
 
-                    {/* Floating Dropdown — categories only */}
+                    {/* Floating Dropdown — Minimalist with animated '>' indicators */}
                     <AnimatePresence>
                       {productsDropdownOpen && (
                         <motion.div
@@ -110,7 +95,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 6, scale: 0.97 }}
                           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-68 bg-cream/98 backdrop-blur-xl rounded-2xl shadow-xl shadow-caramel-900/8 border border-caramel-gold/20 p-2 z-50 overflow-hidden"
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-cream/98 backdrop-blur-xl rounded-2xl shadow-xl shadow-caramel-900/8 border border-caramel-gold/20 p-2 z-50 overflow-hidden"
                         >
                           <div className="absolute top-0 left-8 right-8 h-[1.5px] bg-gradient-to-r from-transparent via-caramel-gold/35 to-transparent" />
 
@@ -125,14 +110,12 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                               <Link
                                 key={cat.id}
                                 href={cat.href}
-                                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-caramel-900/85 hover:bg-[#EBE3D5] hover:text-caramel-900 transition-all duration-150 group/item"
+                                className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-caramel-900/85 hover:bg-[#EBE3D5] hover:text-caramel-900 transition-all duration-150 group"
                               >
-                                <span className="w-7 h-7 rounded-lg bg-caramel-100 group-hover/item:bg-caramel-gold/25 flex items-center justify-center transition-colors duration-150 text-caramel-gold">
-                                  {categoryIcons[cat.id] || (
-                                    <Sparkles className="w-3.5 h-3.5" />
-                                  )}
-                                </span>
                                 <span>{cat.name}</span>
+                                <span className="text-xs font-mono font-bold text-caramel-gold opacity-60 group-hover:opacity-100 transform -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
+                                  &gt;
+                                </span>
                               </Link>
                             ))}
                           </div>
@@ -159,7 +142,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
             })}
           </nav>
 
-          {/* Far Right: Language Switcher — refined pill design */}
+          {/* Far Right: Language Switcher on Desktop / Spacer & Hamburger on Mobile */}
           <div className="hidden lg:flex items-center gap-2">
             <button
               type="button"
@@ -171,12 +154,12 @@ export default function Navbar({ transparent = false }: NavbarProps) {
             </button>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Hamburger Button — fully responsive */}
           <div className="flex items-center lg:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2.5 rounded-xl bg-[#EBE3D5] text-caramel-900 hover:bg-caramel-100 border border-caramel-gold/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-caramel-gold"
+              className="p-2 sm:p-2.5 rounded-xl bg-[#EBE3D5] text-caramel-900 hover:bg-caramel-100 border border-caramel-gold/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-caramel-gold"
               aria-label="Ouvrir le menu de navigation"
             >
               <Menu className="w-6 h-6" />
@@ -185,6 +168,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
         </div>
       </header>
 
+      {/* Mobile Drawer Navigation */}
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
