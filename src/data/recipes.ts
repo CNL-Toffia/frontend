@@ -1,7 +1,6 @@
 export interface Recipe {
   id: string;
   title: string;
-  category: string;
   prepTime: string;
   difficulty: "Facile" | "Moyen" | "Avancé";
   description: string;
@@ -15,7 +14,6 @@ export const recipes: Recipe[] = [
   {
     id: "tartelette-caramel-pecan",
     title: "Tartelettes Sablées au Caramel & Noix de Pécan",
-    category: "Pâtisserie Fine",
     prepTime: "35 min",
     difficulty: "Moyen",
     description: "Une pâte sablée croustillante garnie d'un lit généreux de Crème Caramel TOFFIA et de noix de pécan caramélisées.",
@@ -31,7 +29,6 @@ export const recipes: Recipe[] = [
   {
     id: "choux-creme-pistache",
     title: "Choux Craquelin à la Crème de Pistache",
-    category: "Pâtisserie Professionnelle",
     prepTime: "45 min",
     difficulty: "Avancé",
     description: "Des choux aériens au craquelin doré, garnis d'une ganache onctueuse montée à la Crème de Pistache TOFFIA.",
@@ -47,7 +44,6 @@ export const recipes: Recipe[] = [
   {
     id: "moelleux-coeur-caramel",
     title: "Fondant Chocolat Noir & Cœur Coulant Caramel",
-    category: "Dessert Gourmand",
     prepTime: "25 min",
     difficulty: "Facile",
     description: "Le classique réinventé avec un insert fondant de caramel TOFFIA qui s'échappe à la première bouchée.",
@@ -63,7 +59,6 @@ export const recipes: Recipe[] = [
   {
     id: "entremets-miroir-caramel-noisette",
     title: "Entremets Miroir Caramel & Noisettes Torréfiées",
-    category: "Pâtisserie de Fête",
     prepTime: "1h 15 min",
     difficulty: "Avancé",
     description: "Mousse légère aux noisettes, biscuit dacquoise et glaçage miroir ultra-brillant au caramel TOFFIA.",
@@ -79,7 +74,6 @@ export const recipes: Recipe[] = [
   {
     id: "gaufres-caramel-chaud",
     title: "Gaufres Liégeoises & Nappage Caramel Gourmand",
-    category: "Street Gourmandise",
     prepTime: "20 min",
     difficulty: "Facile",
     description: "Gaufres caramélisées croustillantes, surmontées d'un filet généreux de caramel chaud TOFFIA.",
@@ -94,7 +88,6 @@ export const recipes: Recipe[] = [
   {
     id: "cookie-coeur-cacahuete",
     title: "Cookies Gourmands Cœur Beurre de Cacahuètes",
-    category: "Goûter Artisan",
     prepTime: "30 min",
     difficulty: "Facile",
     description: "Cookies crousti-fondants avec un insert crémeux au Beurre de Cacahuètes TOFFIA et éclats de caramel mou.",

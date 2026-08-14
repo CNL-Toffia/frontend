@@ -51,9 +51,8 @@ export default function RecipesCarousel({ className }: RecipesCarouselProps) {
 
   return (
     <section
-      className={`py-20 lg:py-28 bg-caramel-50/70 border-t border-caramel-gold/15 relative overflow-hidden ${
-        className || ""
-      }`}
+      className={`py-20 lg:py-28 bg-caramel-50/70 border-t border-caramel-gold/15 relative overflow-hidden ${className || ""
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with Navigation Buttons */}
@@ -124,10 +123,6 @@ export default function RecipesCarousel({ className }: RecipesCarouselProps) {
                         sizes="(max-width: 768px) 280px, 340px"
                         className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
-
-                      <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-caramel-900/90 text-cream text-[11px] font-semibold backdrop-blur-sm">
-                        {recipe.category}
-                      </div>
 
                       <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-cream/90 text-caramel-900 text-[10px] font-bold backdrop-blur-sm flex items-center gap-1">
                         <Clock className="w-3 h-3 text-caramel-gold" />

@@ -1,62 +1,99 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { Sparkles, Utensils } from "lucide-react";
-import { recipes, Recipe } from "@/data/recipes";
+import React, { useState, useCallback, useRef } from "react";
+import { recipes } from "@/data/recipes";
 import RecipeCard from "@/components/ui/RecipeCard";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const ITEMS_PER_PAGE = 9;
 
 export interface RecipesGridProps {
   className?: string;
 }
 
 export default function RecipesGrid({ className }: RecipesGridProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Tous");
+  const [currentPage, setCurrentPage] = useState(1);
+  const gridRef = useRef<HTMLDivElement>(null);
 
-  const categories = useMemo(() => {
-    const list = ["Tous"];
-    recipes.forEach((r) => {
-      if (!list.includes(r.category)) list.push(r.category);
-    });
-    return list;
+  const totalPages = Math.ceil(recipes.length / ITEMS_PER_PAGE);
+  const paginatedRecipes = recipes.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const scrollToGrid = useCallback(() => {
+    if (gridRef.current) {
+      gridRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }, []);
 
-  const filteredRecipes = useMemo(() => {
-    if (selectedCategory === "Tous") return recipes;
-    return recipes.filter((r) => r.category === selectedCategory);
-  }, [selectedCategory]);
+  const goToPage = useCallback(
+    (page: number) => {
+      setCurrentPage(page);
+      // Small delay so the DOM re-renders before scrolling
+      setTimeout(scrollToGrid, 80);
+    },
+    [scrollToGrid]
+  );
 
   return (
-    <section className={`py-12 lg:py-16 bg-cream ${className || ""}`}>
+    <section
+      ref={gridRef}
+      className={`bg-cream pb-16 scroll-mt-24 ${className || ""}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Category Filters */}
-        <div className="flex items-center justify-start sm:justify-center overflow-x-auto pb-4 mb-10 scrollbar-none">
-          <div className="inline-flex items-center gap-2 p-1.5 rounded-2xl bg-cream border border-caramel-gold/25 shadow-sm min-w-max">
-            {categories.map((cat) => {
-              const isSelected = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-caramel-gold ${
-                    isSelected
-                      ? "bg-caramel-900 text-cream shadow-md"
-                      : "text-caramel-900/80 hover:text-caramel-900 hover:bg-caramel-100/70"
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Recipes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredRecipes.map((recipe) => (
+        {/* Recipe Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+          {paginatedRecipes.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </div>
+
+        {/* Pagination — only visible when more than ITEMS_PER_PAGE recipes */}
+        {recipes.length > ITEMS_PER_PAGE && (
+          <nav
+            aria-label="Pagination des recettes"
+            className="mt-16 flex items-center justify-center gap-2"
+          >
+            {/* Previous Button */}
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-caramel-dark border border-caramel-gold/30 rounded-lg hover:bg-caramel-gold/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Précédent</span>
+            </button>
+
+            {/* Page Number Buttons */}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  onClick={() => goToPage(page)}
+                  aria-current={page === currentPage ? "page" : undefined}
+                  className={`min-w-[40px] h-10 rounded-lg text-sm font-semibold transition-colors ${
+                    page === currentPage
+                      ? "bg-caramel-gold text-white shadow-sm"
+                      : "text-caramel-dark border border-caramel-gold/30 hover:bg-caramel-gold/10"
+                  }`}
+                >
+                  {page}
+                </button>
+              )
+            )}
+
+            {/* Next Button */}
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-caramel-dark border border-caramel-gold/30 rounded-lg hover:bg-caramel-gold/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <span className="hidden sm:inline">Suivant</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </nav>
+        )}
       </div>
     </section>
   );
