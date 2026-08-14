@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 export interface AboutStoryProps {
@@ -11,31 +10,33 @@ export interface AboutStoryProps {
 
 export default function AboutStory({ className }: AboutStoryProps) {
   return (
-    <section className={`py-12 sm:py-16 lg:py-20 bg-cream relative overflow-hidden ${className || ""}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className={`bg-cream relative overflow-hidden ${className || ""}`}>
+      {/* Editorial 2-Row Alternating Magazine Container */}
+      <div className="flex flex-col gap-24 max-w-7xl mx-auto px-4 py-16">
 
-          {/* Left Side: Clean Flat Editorial Image */}
+        {/* ── Row 1: Image/Main Logo Left, Text Right ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Column: Main Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full"
+            className="w-full flex items-center justify-center"
           >
-            <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-caramel-900/5">
+            <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden bg-caramel-100/50 flex items-center justify-center p-8 sm:p-12">
               <Image
-                src="/caramel1.png"
-                alt="Histoire et savoir-faire artisanal de CNL Caramel TOFFIA à Blida"
-                fill
-                sizes="(max-width: 768px) 100vw, 600px"
-                className="object-cover object-center"
+                src="/CnlLogo.png"
+                alt="Logo officiel CNL Caramel TOFFIA"
+                width={380}
+                height={380}
+                className="object-contain max-h-64 sm:max-h-80 w-auto"
                 priority
               />
             </div>
           </motion.div>
 
-          {/* Right Side: Editorial Article Column */}
+          {/* Right Column: Nos Racines Text */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -43,34 +44,56 @@ export default function AboutStory({ className }: AboutStoryProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col justify-center items-start text-left"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-caramel-dark leading-[1.1] mb-6 font-display">
-              TOFFIA — La passion du Caramel depuis 2011.
+            <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-caramel-dark leading-[1.1] mb-6 font-display">
+              Nos Racines
             </h2>
 
-            <div className="flex flex-col gap-4 text-lg md:text-xl text-caramel-dark/80 leading-relaxed max-w-xl">
-              <p>
-                Fondée en 2011, CNL Caramel s’est rapidement imposée comme une référence algérienne dans la fabrication de caramel et de produits dérivés. Installée à Blida, notre unité de production allie savoir-faire artisanal, technologie moderne et exigence de qualité pour offrir des produits au goût authentique et à la texture irrésistible.
-              </p>
+            <p className="text-lg text-caramel-dark/80 leading-relaxed max-w-xl">
+              Née à Blida en 2011, l&apos;histoire de CNL Caramel est celle d&apos;une passion authentique pour la confiserie. Ce qui a commencé comme une quête du goût parfait s&apos;est transformé en une véritable institution.
+            </p>
+          </motion.div>
+        </div>
 
-              <p>
-                De cette expertise est née TOFFIA, notre marque phare, reconnue pour son caramel onctueux et ses créations gourmandes destinées aussi bien aux professionnels qu’aux passionnés de pâtisserie. Qu’il s’agisse de caramel liquide, de pâtes à tartiner, de nappages ou de préparations sucrées, chaque produit TOFFIA est le fruit d’un engagement constant envers la qualité, la pureté et la créativité.
-              </p>
+        {/* ── Row 2: Text Left, Second Image Right ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Column (Text): order-2 md:order-1 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="order-2 md:order-1 flex flex-col justify-center items-start text-left"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-caramel-dark leading-[1.1] mb-6 font-display">
+              Maison Fondée en 2011
+            </h2>
 
-              <p>
-                Chez CNL Caramel, nous croyons qu’un caramel d’exception commence par le respect des ingrédients, du temps et du goût. Notre mission : faire rayonner l’excellence du caramel algérien, ici et ailleurs.
-              </p>
-            </div>
-
-            <Link
-              href="/produits"
-              className="inline-flex items-center gap-2 border-b border-caramel-gold pb-1 uppercase tracking-widest text-sm font-semibold text-caramel-dark hover:text-caramel-gold transition-colors duration-300 mt-8 group"
-            >
-              <span>Découvrir nos créations</span>
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </Link>
+            <p className="text-lg text-caramel-dark/80 leading-relaxed max-w-xl">
+              Profondément ancrée dans ses racines, notre maison perpétue un savoir-faire unique, alliant tradition et exigence, pour offrir à chaque création une texture et des saveurs d&apos;exception.
+            </p>
           </motion.div>
 
+          {/* Right Column (Second Image): order-1 md:order-2 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="order-1 md:order-2 w-full"
+          >
+            <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden bg-caramel-900/5">
+              <Image
+                src="/caramel1.png"
+                alt="Savoir-faire et fabrication artisanale TOFFIA"
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+          </motion.div>
         </div>
+
       </div>
     </section>
   );
