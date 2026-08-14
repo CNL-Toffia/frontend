@@ -1,111 +1,32 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import { Sparkles, ArrowRight, Utensils } from "lucide-react";
 
 export interface DualMarqueeProps {
   className?: string;
 }
 
-// Images available in public/
-const images = [
-  { src: "/caramel1.png", alt: "Créations artisanales TOFFIA — atelier" },
-  { src: "/caramel2.png", alt: "Crème Caramel TOFFIA en pot" },
-  { src: "/caramel3.png", alt: "Caramel fondant TOFFIA" },
-  { src: "/caramel4.png", alt: "Crème de Pistache TOFFIA" },
-  { src: "/CnlLogo.png", alt: "TOFFIA — CNL Caramel" },
+// Bare cut-out product assets without background boxes
+const productItems = [
+  { id: "p1", src: "/product1.png", alt: "Crème Caramel TOFFIA" },
+  { id: "p2", src: "/product2.png", alt: "Pâte à Tartiner TOFFIA" },
+  { id: "p3", src: "/product3.png", alt: "Gamme Professionnelle TOFFIA" },
+  { id: "p4", src: "/caramel2.png", alt: "Spécialité Gourmande TOFFIA" },
+  { id: "p5", src: "/caramel4.png", alt: "Crème de Pistache TOFFIA" },
 ];
 
-// Triple duplication for seamless looping
-const topRow = [...images, ...images, ...images];
-const bottomRow = [...images, ...images, ...images];
-
-const CARD_W = 260; // px
-const GAP = 20; // px
-const STEP = (CARD_W + GAP) * images.length; // one set width in px
-
-function MarqueeRow({
-  items,
-  direction = "left",
-  duration = 30,
-}: {
-  items: typeof topRow;
-  direction?: "left" | "right";
-  duration?: number;
-}) {
-  const controls = useAnimationControls();
-  const isRunning = useRef(true);
-
-  const startAnim = () => {
-    controls.start({
-      x: direction === "left" ? [-STEP, 0] : [0, -STEP],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration,
-          ease: "linear",
-        },
-      },
-    });
-    isRunning.current = true;
-  };
-
-  React.useEffect(() => {
-    startAnim();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handlePause = () => {
-    controls.stop();
-    isRunning.current = false;
-  };
-
-  const handleResume = () => {
-    if (!isRunning.current) startAnim();
-  };
-
-  const initialX = direction === "left" ? 0 : -STEP;
-
-  return (
-    <div
-      className="relative w-full overflow-hidden"
-      onMouseEnter={handlePause}
-      onMouseLeave={handleResume}
-    >
-      <motion.div
-        animate={controls}
-        initial={{ x: initialX }}
-        className="flex items-center"
-        style={{ gap: `${GAP}px`, width: "max-content" }}
-      >
-        {items.map((img, idx) => (
-          <div
-            key={idx}
-            className="relative flex-shrink-0 rounded-2xl overflow-hidden group cursor-pointer"
-            style={{ width: CARD_W, height: 200 }}
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              fill
-              sizes="260px"
-              className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
-              draggable={false}
-            />
-            {/* Subtle vignette for depth */}
-            <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-caramel-900/8 pointer-events-none" />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
+// Repeat 4 times for a seamless continuous flow
+const topTrack = [...productItems, ...productItems, ...productItems, ...productItems];
+const bottomTrack = [...productItems.slice().reverse(), ...productItems.slice().reverse(), ...productItems.slice().reverse(), ...productItems.slice().reverse()];
 
 export default function DualMarquee({ className }: DualMarqueeProps) {
+  const [isTopPaused, setIsTopPaused] = useState(false);
+  const [isBottomPaused, setIsBottomPaused] = useState(false);
+
   return (
     <section
       className={`py-20 lg:py-28 bg-cream border-t border-caramel-gold/15 relative overflow-hidden ${
@@ -113,7 +34,7 @@ export default function DualMarquee({ className }: DualMarqueeProps) {
       }`}
     >
       {/* Section Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-caramel-100/90 border border-caramel-gold/25 text-[11px] font-bold uppercase tracking-widest text-caramel-900 mb-4 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-caramel-gold" />
           <span>Sélection Signature</span>
@@ -124,29 +45,103 @@ export default function DualMarquee({ className }: DualMarqueeProps) {
         </h2>
 
         <p className="text-base sm:text-lg text-caramel-900/65 max-w-xl mx-auto leading-relaxed">
-          Découvrez la diversité de nos gammes, élaborées avec des ingrédients nobles
-          au cœur de Blida depuis 2011.
+          Découvrez nos saveurs artisanales créées avec passion et minutie
+          à Blida depuis 2011.
         </p>
       </div>
 
-      {/* Top Marquee — Left to Right */}
-      <MarqueeRow items={topRow} direction="right" duration={32} />
+      {/* Track 1: Left to Right — Sparse & Large (3 items visible on desktop), Bare Images Only */}
+      <div
+        className="relative w-full overflow-hidden py-4"
+        onMouseEnter={() => setIsTopPaused(true)}
+        onMouseLeave={() => setIsTopPaused(false)}
+      >
+        <motion.div
+          className="flex items-center w-max gap-12 sm:gap-16 lg:gap-24"
+          animate={{
+            x: isTopPaused ? undefined : ["-50%", "0%"],
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 35,
+              ease: "linear",
+            },
+          }}
+        >
+          {topTrack.map((item, idx) => (
+            <div
+              key={`top-${item.id}-${idx}`}
+              className="relative flex-shrink-0 w-[70vw] sm:w-[45vw] lg:w-[28vw] h-64 sm:h-80 lg:h-96 flex items-center justify-center cursor-pointer group"
+            >
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 768px) 70vw, 30vw"
+                  className="object-contain drop-shadow-xl transition-transform duration-400 ease-out group-hover:scale-120 group-hover:drop-shadow-2xl"
+                  draggable={false}
+                />
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
 
-      {/* 16px spacer between tracks */}
-      <div className="h-4" />
+      {/* Spacing between rows */}
+      <div className="h-6 sm:h-10" />
 
-      {/* Bottom Marquee — Right to Left */}
-      <MarqueeRow items={bottomRow} direction="left" duration={26} />
+      {/* Track 2: Right to Left — Sparse & Large, Bare Images Only */}
+      <div
+        className="relative w-full overflow-hidden py-4"
+        onMouseEnter={() => setIsBottomPaused(true)}
+        onMouseLeave={() => setIsBottomPaused(false)}
+      >
+        <motion.div
+          className="flex items-center w-max gap-12 sm:gap-16 lg:gap-24"
+          animate={{
+            x: isBottomPaused ? undefined : ["0%", "-50%"],
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 32,
+              ease: "linear",
+            },
+          }}
+        >
+          {bottomTrack.map((item, idx) => (
+            <div
+              key={`bottom-${item.id}-${idx}`}
+              className="relative flex-shrink-0 w-[70vw] sm:w-[45vw] lg:w-[28vw] h-64 sm:h-80 lg:h-96 flex items-center justify-center cursor-pointer group"
+            >
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 768px) 70vw, 30vw"
+                  className="object-contain drop-shadow-xl transition-transform duration-400 ease-out group-hover:scale-120 group-hover:drop-shadow-2xl"
+                  draggable={false}
+                />
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
 
-      {/* Dual Call-to-Action */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 text-center">
+      {/* Dual Call-to-Action Buttons */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
           <Link
             href="/produits"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-caramel-900 text-cream font-bold text-sm sm:text-base shadow-warm hover:bg-caramel-700 hover:shadow-warm-lg hover:scale-105 active:scale-95 transition-all duration-200"
           >
             <span>Voir tous nos produits</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 text-caramel-gold" />
           </Link>
 
           <Link
