@@ -1,24 +1,23 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Metadata } from "next";
 import { ChefHat, Sparkles, Utensils, Heart } from "lucide-react";
 import RecipesGrid from "@/components/sections/RecipesGrid";
-import ContactSection from "@/components/sections/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Recettes & Contact Professionnel",
+  title: "Recettes & Inspirations Pâtissières",
   description:
-    "Découvrez des recettes gourmandes sublimées par le caramel TOFFIA et contactez notre équipe commerciale à Blida pour vos commandes de gros volumes ou vos projets pâtissiers.",
+    "Découvrez des recettes gourmandes sublimées par le caramel TOFFIA. Tartes, choux, entremets et desserts créatifs avec nos crèmes et nappages artisanaux.",
   openGraph: {
-    title: "Recettes & Contact Professionnel | TOFFIA — CNL Caramel",
+    title: "Recettes & Inspirations | TOFFIA — CNL Caramel",
     description:
-      "Inspirations pâtissières d'exception et contact direct avec l'unité de production à Blida.",
+      "Inspirations pâtissières d'exception avec les caramels et crèmes TOFFIA.",
     url: "https://toffiacaramel-dz.com/recettes",
     images: [
       {
-        url: "/caramel2.png",
+        url: "/caramel3.png",
         width: 1200,
         height: 630,
-        alt: "Recettes et Contact TOFFIA",
+        alt: "Recettes TOFFIA",
       },
     ],
   },
@@ -27,11 +26,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RecipesContactPage() {
+export default function RecipesPage() {
   return (
     <main className="flex-1 flex flex-col w-full bg-cream">
       {/* Page Header Banner */}
-      <section className="relative pt-12 pb-14 lg:pt-20 lg:pb-16 bg-gradient-to-b from-caramel-100/50 via-caramel-50/30 to-cream border-b border-caramel-gold/15 overflow-hidden">
+      <section className="relative pt-12 pb-14 lg:pt-20 lg:pb-16 bg-gradient-to-b from-caramel-100/50 via-caramel-50/30 to-cream overflow-hidden">
         <div className="absolute top-0 right-1/3 w-96 h-96 bg-caramel-gold/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -66,13 +65,8 @@ export default function RecipesContactPage() {
         </div>
       </section>
 
-      {/* 1. Recipe Teasers & Full Grid */}
+      {/* Recipe Teasers & Full Grid */}
       <RecipesGrid />
-
-      {/* 2. Contact Section (id="contact") */}
-      <Suspense fallback={null}>
-        <ContactSection />
-      </Suspense>
     </main>
   );
 }

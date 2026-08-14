@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
-import AboutPreview from "@/components/sections/AboutPreview";
-import BentoProducts from "@/components/sections/BentoProducts";
-import RecipesCarousel from "@/components/sections/RecipesCarousel";
+import DualMarquee from "@/components/sections/DualMarquee";
 
 export const metadata: Metadata = {
   title: "Accueil | TOFFIA — La Passion du Caramel depuis 2011",
@@ -30,17 +28,11 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main className="flex-1 flex flex-col w-full">
-      {/* 1. Hero Section (GSAP entrance animation & visual showcase) */}
+      {/* 1. Typography-focused Hero — pure beige, no background image */}
       <Hero />
 
-      {/* 2. Section Découverte (Teaser histoire & savoir-faire Blida 2011) */}
-      <AboutPreview />
-
-      {/* 3. Bento Grid (Nos 3 Best-sellers incontournables) */}
-      <BentoProducts />
-
-      {/* 4. Carrousel Recettes (Inspirations gourmandes & pro) */}
-      <RecipesCarousel />
+      {/* 2. Dual Scrolling Image Marquee with dual CTAs */}
+      <DualMarquee />
     </main>
   );
 }

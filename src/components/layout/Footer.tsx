@@ -57,61 +57,60 @@ function TikTokIcon({ className }: { className?: string }) {
 export default function Footer({ className }: FooterProps) {
   return (
     <footer
-      className={`bg-caramel-900 text-cream border-t border-caramel-700/40 relative overflow-hidden ${
+      className={`bg-cream text-caramel-900 border-t border-caramel-gold/15 relative overflow-hidden ${
         className || ""
       }`}
     >
-      {/* Decorative subtle ambient caramel glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-caramel-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-72 h-72 bg-royal-500/5 rounded-full blur-2xl pointer-events-none" />
+      {/* Decorative subtle ambient glow */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-caramel-gold/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
           {/* Column 1: Brand & Narrative */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 group w-fit">
-              <div className="relative w-12 h-12 flex-shrink-0">
+              <div className="relative w-20 h-20 flex-shrink-0">
                 <Image
                   src="/CnlLogo.png"
                   alt="Logo officiel TOFFIA CNL Caramel"
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
+                  width={80}
+                  height={80}
+                  className="w-20 h-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-bold text-2xl tracking-widest text-cream">
+                <span className="font-display font-bold text-2xl tracking-widest text-caramel-900">
                   TOFFIA
                 </span>
-                <span className="text-[10px] text-caramel-300 uppercase tracking-[0.25em] -mt-1">
+                <span className="text-[10px] text-caramel-700 uppercase tracking-[0.25em] -mt-1">
                   CNL Caramel
                 </span>
               </div>
             </Link>
 
-            <p className="text-sm text-caramel-100/80 leading-relaxed max-w-sm mt-1">
+            <p className="text-sm text-caramel-900/70 leading-relaxed max-w-sm mt-1">
               Maison artisanale fondée en 2011 à Blida. Nous façonnons avec
               passion l'excellence du caramel algérien pour sublimer le quotidien
               des gourmands et des artisans pâtissiers.
             </p>
 
             <div className="flex items-center gap-2 mt-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-caramel-700/60 border border-caramel-gold/25 text-xs text-caramel-gold font-medium">
-                <Sparkles className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-caramel-100 border border-caramel-gold/25 text-xs text-caramel-900 font-medium">
+                <Sparkles className="w-3.5 h-3.5 text-caramel-gold" />
                 <span>La Passion du Caramel depuis 2011</span>
               </span>
             </div>
           </div>
 
           {/* Column 2: Navigation & Gammes */}
-          <div className="lg:col-span-3 flex flex-col gap-4">
-            <h3 className="font-display font-semibold text-lg text-cream tracking-wide flex items-center gap-2">
+          <div className="flex flex-col gap-4">
+            <h3 className="font-display font-semibold text-lg text-caramel-900 tracking-wide flex items-center gap-2">
               <span className="w-1.5 h-4 bg-caramel-gold rounded-full" />
               <span>Navigation</span>
             </h3>
 
-            <ul className="flex flex-col gap-2.5 text-sm text-caramel-100/90">
+            <ul className="flex flex-col gap-2.5 text-sm text-caramel-900/80">
               {siteConfig.nav.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -122,11 +121,11 @@ export default function Footer({ className }: FooterProps) {
                   </Link>
                 </li>
               ))}
-              <li className="pt-2 border-t border-caramel-700/40">
-                <span className="text-xs text-caramel-300 font-semibold uppercase tracking-wider block mb-1.5">
+              <li className="pt-2 border-t border-caramel-gold/15">
+                <span className="text-xs text-caramel-700 font-semibold uppercase tracking-wider block mb-1.5">
                   Nos Gammes
                 </span>
-                <div className="grid grid-cols-1 gap-1 text-xs text-caramel-100/75">
+                <div className="grid grid-cols-1 gap-1 text-xs text-caramel-900/60">
                   <Link
                     href="/produits?categorie=caramels-liquides"
                     className="hover:text-caramel-gold transition-colors"
@@ -157,13 +156,13 @@ export default function Footer({ className }: FooterProps) {
           </div>
 
           {/* Column 3: Coordonnées Officielles */}
-          <div className="lg:col-span-3 flex flex-col gap-4">
-            <h3 className="font-display font-semibold text-lg text-cream tracking-wide flex items-center gap-2">
+          <div className="flex flex-col gap-4">
+            <h3 className="font-display font-semibold text-lg text-caramel-900 tracking-wide flex items-center gap-2">
               <span className="w-1.5 h-4 bg-caramel-gold rounded-full" />
               <span>Nous Contacter</span>
             </h3>
 
-            <div className="flex flex-col gap-3.5 text-sm text-caramel-100/90">
+            <div className="flex flex-col gap-3.5 text-sm text-caramel-900/80">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-caramel-gold flex-shrink-0 mt-1" />
                 <span className="leading-snug">
@@ -191,11 +190,28 @@ export default function Footer({ className }: FooterProps) {
                 </a>
               </div>
             </div>
+
+            {/* Quick Pro CTA */}
+            <div className="mt-2 p-3.5 rounded-xl bg-caramel-100/80 border border-caramel-gold/20 flex flex-col gap-2">
+              <span className="text-xs font-semibold text-caramel-900">
+                Espace Professionnel
+              </span>
+              <p className="text-[11px] text-caramel-900/60 leading-tight">
+                Besoin de gros volumes ou de recettes personnalisées ?
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-caramel-900 hover:text-caramel-gold transition-colors mt-0.5"
+              >
+                <span>Nous écrire</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-caramel-gold" />
+              </Link>
+            </div>
           </div>
 
-          {/* Column 4: Réseaux & Espace Pro */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            <h3 className="font-display font-semibold text-lg text-cream tracking-wide flex items-center gap-2">
+          {/* Column 4: Réseaux Sociaux */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-display font-semibold text-lg text-caramel-900 tracking-wide flex items-center gap-2">
               <span className="w-1.5 h-4 bg-caramel-gold rounded-full" />
               <span>Suivez-nous</span>
             </h3>
@@ -206,7 +222,7 @@ export default function Footer({ className }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook CNL Caramel"
-                className="w-10 h-10 rounded-full bg-caramel-700/60 hover:bg-caramel-gold hover:text-caramel-900 text-cream flex items-center justify-center transition-all duration-200 hover:scale-110"
+                className="w-10 h-10 rounded-full bg-caramel-100 hover:bg-caramel-gold hover:text-cream text-caramel-900 flex items-center justify-center transition-all duration-200 hover:scale-110"
               >
                 <FacebookIcon className="w-4 h-4" />
               </a>
@@ -216,7 +232,7 @@ export default function Footer({ className }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram TOFFIA"
-                className="w-10 h-10 rounded-full bg-caramel-700/60 hover:bg-caramel-gold hover:text-caramel-900 text-cream flex items-center justify-center transition-all duration-200 hover:scale-110"
+                className="w-10 h-10 rounded-full bg-caramel-100 hover:bg-caramel-gold hover:text-cream text-caramel-900 flex items-center justify-center transition-all duration-200 hover:scale-110"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -226,44 +242,33 @@ export default function Footer({ className }: FooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok CNL Caramel"
-                className="w-10 h-10 rounded-full bg-caramel-700/60 hover:bg-caramel-gold hover:text-caramel-900 text-cream flex items-center justify-center transition-all duration-200 hover:scale-110"
+                className="w-10 h-10 rounded-full bg-caramel-100 hover:bg-caramel-gold hover:text-cream text-caramel-900 flex items-center justify-center transition-all duration-200 hover:scale-110"
               >
                 <TikTokIcon className="w-4 h-4" />
               </a>
             </div>
 
-            {/* Quick Pro CTA */}
-            <div className="mt-2 p-3.5 rounded-xl bg-caramel-800/60 border border-caramel-gold/20 flex flex-col gap-2">
-              <span className="text-xs font-semibold text-caramel-gold">
-                Espace Professionnel
-              </span>
-              <p className="text-[11px] text-caramel-100/80 leading-tight">
-                Besoin de gros volumes ou de recettes personnalisées ?
-              </p>
-              <Link
-                href="/recettes#contact"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-cream hover:text-caramel-gold transition-colors mt-0.5"
-              >
-                <span>Nous écrire</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-caramel-gold" />
-              </Link>
-            </div>
+            <p className="text-xs text-caramel-900/60 leading-relaxed mt-1">
+              Retrouvez-nous sur les réseaux sociaux pour découvrir nos
+              dernières créations, tutoriels pâtissiers et coulisses de
+              production.
+            </p>
           </div>
         </div>
 
         {/* Bottom Bar / Mentions Légales */}
-        <div className="pt-8 mt-8 border-t border-caramel-700/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-caramel-300">
+        <div className="pt-8 mt-8 border-t border-caramel-gold/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-caramel-700">
           <p>{siteConfig.legal.copyright}</p>
 
           <div className="flex items-center gap-6">
             <Link
-              href="/recettes#contact"
+              href="/contact"
               className="hover:text-caramel-gold transition-colors"
             >
               Contact
             </Link>
-            <span className="text-caramel-700">•</span>
-            <span className="inline-flex items-center gap-1.5 text-caramel-100/70">
+            <span className="text-caramel-gold/30">•</span>
+            <span className="inline-flex items-center gap-1.5 text-caramel-900/50">
               <span>Élaboré avec</span>
               <Heart className="w-3 h-3 text-royal-500 fill-royal-500" />
               <span>à Blida, Algérie</span>

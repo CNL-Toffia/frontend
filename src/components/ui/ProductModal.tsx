@@ -155,7 +155,7 @@ export default function ProductModal({
                 {/* Modal Actions */}
                 <div className="mt-6 pt-4 border-t border-caramel-gold/20 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <Link
-                    href={`/recettes#contact?produit=${encodeURIComponent(product.name)}`}
+                    href={`/contact?produit=${encodeURIComponent(product.name)}`}
                     onClick={onClose}
                     className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-caramel-900 text-cream text-xs font-bold hover:bg-caramel-700 hover:text-caramel-gold transition-colors shadow-warm"
                   >

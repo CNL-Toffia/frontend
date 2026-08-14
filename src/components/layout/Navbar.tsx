@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
-  ChevronDown,
   Droplet,
   Cookie,
   Sparkles,
   ChefHat,
-  ArrowRight,
+  Globe,
 } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import MobileMenu from "./MobileMenu";
@@ -29,67 +28,51 @@ const categoryIcons: Record<string, React.ReactNode> = {
   "gamme-pro": <ChefHat className="w-4 h-4 text-caramel-gold" />,
 };
 
+// A slightly darker than cream hover token that reads clearly against bg-cream
+const NAV_HOVER = "hover:bg-[#EBE3D5]";
+const NAV_ACTIVE = "bg-[#EBE3D5] border-caramel-gold/30";
+const NAV_BASE = "bg-transparent border-transparent";
+
 export default function Navbar({ transparent = false }: NavbarProps) {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  const handleDropdownEnter = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setProductsDropdownOpen(true);
+  };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setProductsDropdownOpen(false);
+    }, 150);
+  };
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? "bg-cream/95 backdrop-blur-md shadow-warm py-3 border-b border-caramel-gold/20"
-            : transparent
-            ? "bg-transparent py-5"
-            : "bg-cream/80 backdrop-blur-sm py-5 border-b border-caramel-gold/10"
-        }`}
-      >
+      <header className="fixed top-0 left-0 right-0 z-40 bg-transparent py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo / Brand */}
+          {/* Logo / Brand — Far Left */}
           <Link
             href="/"
-            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-caramel-gold rounded-xl p-1"
+            className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-caramel-gold rounded-xl p-1 flex-shrink-0"
           >
-            <div className="relative w-10 h-10 flex-shrink-0">
+            <div className="relative w-20 h-20 flex-shrink-0">
               <Image
                 src="/CnlLogo.png"
                 alt="Logo TOFFIA CNL Caramel"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+                width={80}
+                height={80}
+                className="w-20 h-20 object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105"
                 priority
               />
             </div>
-
-            <div className="flex flex-col">
-              <span className="font-display font-bold text-2xl tracking-wider text-caramel-900 group-hover:text-caramel-700 transition-colors">
-                TOFFIA
-              </span>
-              <span className="text-[10px] text-caramel-700 font-medium uppercase tracking-[0.2em] -mt-1">
-                CNL Caramel · 2011
-              </span>
-            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Desktop Navigation — Centered, transparent by default */}
+          <nav className="hidden lg:flex items-center gap-1.5 absolute left-1/2 -translate-x-1/2">
             {siteConfig.nav.map((item) => {
               const isActive = pathname === item.href;
 
@@ -98,66 +81,60 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                   <div
                     key={item.label}
                     className="relative"
-                    onMouseEnter={() => setProductsDropdownOpen(true)}
-                    onMouseLeave={() => setProductsDropdownOpen(false)}
+                    onMouseEnter={handleDropdownEnter}
+                    onMouseLeave={handleDropdownLeave}
                   >
                     <Link
                       href={item.href}
-                      className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                      className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${
                         isActive || pathname.startsWith("/produits")
-                          ? "text-caramel-900 font-semibold bg-caramel-gold/15"
-                          : "text-caramel-900/80 hover:text-caramel-900 hover:bg-caramel-gold/10"
+                          ? `text-caramel-900 ${NAV_ACTIVE}`
+                          : `text-caramel-900/75 ${NAV_BASE} ${NAV_HOVER} hover:text-caramel-900 hover:border-caramel-gold/20`
                       }`}
                     >
                       <span>{item.label}</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          productsDropdownOpen ? "rotate-180 text-caramel-gold" : ""
+                      <span
+                        className={`text-[11px] font-black text-caramel-gold inline-block transition-transform duration-200 leading-none ${
+                          productsDropdownOpen ? "rotate-90" : ""
                         }`}
-                      />
+                      >
+                        &rsaquo;
+                      </span>
                     </Link>
 
-                    {/* Framer Motion Dropdown */}
+                    {/* Floating Dropdown — categories only */}
                     <AnimatePresence>
                       {productsDropdownOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                          transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute top-full left-0 mt-1.5 w-72 bg-cream rounded-2xl shadow-warm-lg border border-caramel-gold/25 p-2 z-50 overflow-hidden"
+                          exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                          transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-68 bg-cream/98 backdrop-blur-xl rounded-2xl shadow-xl shadow-caramel-900/8 border border-caramel-gold/20 p-2 z-50 overflow-hidden"
                         >
-                          <div className="px-3 py-2 border-b border-caramel-gold/15">
-                            <span className="text-[11px] font-semibold text-caramel-700 uppercase tracking-wider">
-                              Catégories de Produits
+                          <div className="absolute top-0 left-8 right-8 h-[1.5px] bg-gradient-to-r from-transparent via-caramel-gold/35 to-transparent" />
+
+                          <div className="px-3 pt-2.5 pb-2">
+                            <span className="text-[10px] font-bold text-caramel-700/80 uppercase tracking-widest">
+                              Explorer par catégorie
                             </span>
                           </div>
 
-                          <div className="py-1 flex flex-col gap-0.5">
+                          <div className="flex flex-col gap-0.5">
                             {siteConfig.productCategories.map((cat) => (
                               <Link
                                 key={cat.id}
                                 href={cat.href}
-                                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-caramel-900 hover:bg-caramel-gold/15 hover:text-caramel-900 transition-colors group"
+                                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-caramel-900/85 hover:bg-[#EBE3D5] hover:text-caramel-900 transition-all duration-150 group/item"
                               >
-                                <span className="p-1.5 rounded-lg bg-caramel-100 group-hover:bg-caramel-gold/30 transition-colors">
+                                <span className="w-7 h-7 rounded-lg bg-caramel-100 group-hover/item:bg-caramel-gold/25 flex items-center justify-center transition-colors duration-150 text-caramel-gold">
                                   {categoryIcons[cat.id] || (
-                                    <Sparkles className="w-4 h-4 text-caramel-gold" />
+                                    <Sparkles className="w-3.5 h-3.5" />
                                   )}
                                 </span>
                                 <span>{cat.name}</span>
                               </Link>
                             ))}
-                          </div>
-
-                          <div className="pt-2 mt-1 border-t border-caramel-gold/15">
-                            <Link
-                              href="/produits"
-                              className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-caramel-900 bg-caramel-50 hover:bg-caramel-gold/20 transition-colors"
-                            >
-                              <span>Voir tout le catalogue</span>
-                              <ArrowRight className="w-3.5 h-3.5 text-caramel-gold" />
-                            </Link>
                           </div>
                         </motion.div>
                       )}
@@ -170,10 +147,10 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${
                     isActive
-                      ? "text-caramel-900 font-semibold bg-caramel-gold/15"
-                      : "text-caramel-900/80 hover:text-caramel-900 hover:bg-caramel-gold/10"
+                      ? `text-caramel-900 ${NAV_ACTIVE}`
+                      : `text-caramel-900/75 ${NAV_BASE} ${NAV_HOVER} hover:text-caramel-900 hover:border-caramel-gold/20`
                   }`}
                 >
                   {item.label}
@@ -182,24 +159,25 @@ export default function Navbar({ transparent = false }: NavbarProps) {
             })}
           </nav>
 
-          {/* Desktop Right Action */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href="/produits"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-caramel-gold to-caramel-300 text-caramel-900 text-xs font-bold tracking-wide uppercase shadow-warm hover:shadow-warm-lg hover:scale-105 active:scale-95 transition-all duration-200"
+          {/* Far Right: Language Switcher — refined pill design */}
+          <div className="hidden lg:flex items-center gap-2">
+            <button
+              type="button"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-transparent border border-caramel-900/15 text-xs font-bold text-caramel-900/75 hover:bg-[#EBE3D5] hover:text-caramel-900 hover:border-caramel-gold/25 transition-all duration-200"
+              aria-label="Changer de langue — actuellement Français"
             >
-              <span>Découvrir</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+              <Globe className="w-3.5 h-3.5 text-caramel-gold" />
+              <span className="tracking-wider">FR</span>
+            </button>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger */}
           <div className="flex items-center lg:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2.5 rounded-xl bg-caramel-100 text-caramel-900 hover:bg-caramel-gold/20 transition-colors focus:outline-none focus:ring-2 focus:ring-caramel-gold"
-              aria-label="Ouvrir le menu"
+              className="p-2.5 rounded-xl bg-[#EBE3D5] text-caramel-900 hover:bg-caramel-100 border border-caramel-gold/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-caramel-gold"
+              aria-label="Ouvrir le menu de navigation"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -207,7 +185,6 @@ export default function Navbar({ transparent = false }: NavbarProps) {
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation */}
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}

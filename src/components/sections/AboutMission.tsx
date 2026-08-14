@@ -59,7 +59,7 @@ export default function AboutMission({ className }: AboutMissionProps) {
             </Link>
 
             <Link
-              href="/recettes#contact"
+              href="/contact"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-caramel-700/60 hover:bg-caramel-700 text-cream font-semibold text-sm border border-caramel-gold/30 transition-all duration-200"
             >
               <span>Nous contacter</span>

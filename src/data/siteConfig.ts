@@ -57,7 +57,7 @@ export const siteConfig: SiteConfig = {
     { label: "À propos", href: "/a-propos" },
     { label: "Produits", href: "/produits", dropdown: true },
     { label: "Recettes", href: "/recettes" },
-    { label: "Contact", href: "/recettes#contact" },
+    { label: "Contact", href: "/contact" },
   ],
   productCategories: [
     {
