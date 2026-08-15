@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 
 export interface FlavorSlide {
@@ -34,6 +35,7 @@ const flavorSlides: FlavorSlide[] = [
 ];
 
 export default function Hero() {
+  const t = useTranslations("hero");
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
@@ -48,57 +50,55 @@ export default function Hero() {
 
   return (
     <section className="relative flex items-center justify-center pt-20 sm:pt-28 lg:pt-32 pb-14 sm:pb-20 lg:pb-24 overflow-hidden">
-
       {/* ── Soft Luxury Warm Ambient Light ── */}
       <div
         className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[350px] sm:w-[500px] lg:w-[650px] h-[350px] sm:h-[500px] lg:h-[650px] rounded-full blur-[90px] sm:blur-[120px] pointer-events-none opacity-70 transition-all duration-1000"
         style={{
-          background: "radial-gradient(circle, rgba(236, 163, 21, 0.28) 0%, rgba(217, 164, 104, 0.16) 45%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(236, 163, 21, 0.28) 0%, rgba(217, 164, 104, 0.16) 45%, transparent 70%)",
         }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-
           {/* ── Left Column: Editorial Headline & Inline Clickable Links ── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            className="order-1 lg:order-1 lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left w-full"
+            className="order-1 lg:order-1 lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left rtl:lg:text-right w-full"
           >
             {/* Clean, Modern Headline */}
             <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-[3.65rem] text-caramel-dark leading-[1.12] tracking-tight max-w-xl">
-              TOFFIA <br /> La Passion du{" "}
-              <span className="text-caramel-gold">Caramel</span> depuis 2011
+              {t("titlePart1")} <br /> {t("titlePart2")}{" "}
+              <span className="text-caramel-gold">{t("titleHighlight")}</span>{" "}
+              {t("titlePart3")}
             </h1>
 
             {/* Editorial Description with Clickable Inline Links */}
             <p className="text-base sm:text-lg md:text-xl text-caramel-dark/80 leading-relaxed max-w-lg mt-6 font-normal">
-              L&apos;excellence d&apos;un savoir-faire authentique. Explorez notre{" "}
+              {t("descriptionPrefix")}{" "}
               <Link
                 href="/produits"
                 className="font-bold text-caramel-900 underline underline-offset-4 decoration-caramel-gold/60 hover:text-caramel-gold hover:decoration-caramel-gold transition-colors duration-200"
               >
-                collection de produits
+                {t("productsLink")}
               </Link>{" "}
-              pensée pour les gourmands et les professionnels, ou plongez au cœur de{" "}
+              {t("descriptionMiddle")}{" "}
               <Link
                 href="/a-propos"
                 className="font-bold text-caramel-900 underline underline-offset-4 decoration-caramel-gold/60 hover:text-caramel-gold hover:decoration-caramel-gold transition-colors duration-200"
               >
-                notre histoire
+                {t("storyLink")}
               </Link>
-              .
+              {t("descriptionSuffix")}
             </p>
           </motion.div>
 
-          {/* ── Right Column: Clean Large Product Image Showcase (No Dots/Squares) ── */}
+          {/* ── Right Column: Clean Large Product Image Showcase ── */}
           <div className="order-2 lg:order-2 lg:col-span-6 relative flex flex-col items-center justify-center w-full">
-
             {/* Main Product Showcase Container */}
             <div className="relative w-full max-w-lg sm:max-w-xl aspect-[16/11] sm:aspect-[16/10] flex items-center justify-center">
-
               {/* Soft Golden Glow Ring behind image */}
               <div className="absolute inset-4 bg-caramel-gold/15 rounded-full blur-2xl pointer-events-none" />
 
@@ -121,11 +121,8 @@ export default function Hero() {
                   />
                 </motion.div>
               </AnimatePresence>
-
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Recipe } from "@/data/recipes";
@@ -15,6 +16,7 @@ export default function RecipeCard({
   recipe,
   className = "",
 }: RecipeCardProps) {
+  const t = useTranslations("recipesPage");
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -40,20 +42,21 @@ export default function RecipeCard({
       <button
         type="button"
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="flex items-start justify-between gap-3 text-left w-full cursor-pointer"
+        className="flex items-start justify-between gap-3 text-left rtl:text-right w-full cursor-pointer"
       >
         <h3 className="text-xl font-bold text-caramel-dark leading-snug font-display">
           {recipe.title}
         </h3>
         <ChevronDown
-          className={`w-5 h-5 text-caramel-gold flex-shrink-0 mt-1 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""
-            }`}
+          className={`w-5 h-5 text-caramel-gold flex-shrink-0 mt-1 transition-transform duration-300 ${
+            isExpanded ? "rotate-180" : ""
+          }`}
         />
       </button>
 
-      {/* Description (always visible) */}
+      {/* Description */}
       {recipe.description && (
-        <p className="text-sm text-caramel-dark/65 leading-relaxed mt-2">
+        <p className="text-sm text-caramel-dark/65 leading-relaxed mt-2 text-left rtl:text-right">
           {recipe.description}
         </p>
       )}
@@ -69,9 +72,9 @@ export default function RecipeCard({
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="pt-4 mt-3 border-t border-caramel-gold/15">
+            <div className="pt-4 mt-3 border-t border-caramel-gold/15 text-left rtl:text-right">
               <span className="text-[11px] font-bold uppercase tracking-widest text-caramel-gold mb-2 block">
-                Ingrédients
+                {t("ingredients")}
               </span>
               <ul className="space-y-1.5">
                 {recipe.ingredients.map((ingredient, idx) => (

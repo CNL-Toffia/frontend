@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useMemo, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { products, productCategories, Product } from "@/data/products";
 import ProductCard from "@/components/ui/ProductCard";
@@ -10,6 +11,8 @@ export interface ProductsGridProps {
 }
 
 export default function ProductsGrid({ className }: ProductsGridProps) {
+  const t = useTranslations("categories");
+
   // Group products by category (excluding "tous")
   const categorizedProducts = useMemo(() => {
     const categoryOrder = productCategories
@@ -18,11 +21,9 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
 
     return categoryOrder
       .map((catId) => {
-        const catMeta = productCategories.find((c) => c.id === catId);
         const items = products.filter((p) => p.category === catId);
         return {
           id: catId,
-          label: catMeta?.label || catId,
           products: items,
         };
       })
@@ -63,7 +64,7 @@ export default function ProductsGrid({ className }: ProductsGridProps) {
             <CategoryRow
               key={group.id}
               id={group.id}
-              label={group.label}
+              label={t(group.id as any)}
               products={group.products}
             />
           ))}
@@ -102,22 +103,22 @@ function CategoryRow({ id, label, products }: CategoryRowProps) {
         </h2>
 
         {showArrow && (
-          <div className="flex items-center gap-2 mb-0 ml-4 flex-shrink-0">
+          <div className="flex items-center gap-2 mb-0 ml-4 rtl:ml-0 rtl:mr-4 flex-shrink-0">
             <button
               type="button"
               onClick={scrollLeft}
               aria-label={`Précédent ${label}`}
-              className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95"
+              className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95 cursor-pointer"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5 rtl:rotate-180" />
             </button>
             <button
               type="button"
               onClick={scrollRight}
               aria-label={`Suivant ${label}`}
-              className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95"
+              className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95 cursor-pointer"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 rtl:rotate-180" />
             </button>
           </div>
         )}

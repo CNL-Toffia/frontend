@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -13,8 +14,9 @@ import {
   Clock,
   Share2,
 } from "lucide-react";
+import { siteConfig } from "@/data/siteConfig";
 
-/* Inline brand SVG icons — lucide doesn't ship Facebook/Instagram/TikTok */
+/* Inline brand SVG icons */
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 1.09.044 1.613.115V7.93h-1.141c-1.66 0-2.293.63-2.293 2.268v1.836h3.369l-.497 3.667h-2.872v8.162C19.395 23.225 24 18.2 24 12.078 24 5.429 18.627 0 12 0S0 5.429 0 12.078c0 5.564 3.825 10.228 9.101 11.613z" />
@@ -33,8 +35,6 @@ const TikTokIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-import { siteConfig } from "@/data/siteConfig";
-
 export interface ContactSectionProps {
   className?: string;
 }
@@ -49,6 +49,7 @@ interface ContactFormData {
 export default function ContactSection({
   className,
 }: ContactSectionProps) {
+  const t = useTranslations("contactPage");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
@@ -72,24 +73,20 @@ export default function ContactSection({
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-16 text-left rtl:text-right">
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-caramel-dark leading-[1.1] tracking-tight mb-6">
-            Contactez-nous
+            {t("title")}
           </h2>
 
           <p className="text-lg md:text-xl text-caramel-dark/80 leading-relaxed max-w-2xl">
-            Vous êtes un professionnel de la pâtisserie, un restaurateur, un
-            distributeur ou un particulier passionné ? Notre équipe basée à
-            Blida est à votre écoute.
+            {t("subtitle")}
           </p>
         </div>
 
         {/* 2-Column Minimalist Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-
-          {/* Left Column: Minimalist Elegant Form */}
+          {/* Left Column: Form */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               {isSubmitted ? (
@@ -97,30 +94,30 @@ export default function ContactSection({
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
-                  className="py-12 text-left flex flex-col items-start"
+                  className="py-12 text-left rtl:text-right flex flex-col items-start"
                 >
                   <div className="w-12 h-12 rounded-full bg-caramel-100 flex items-center justify-center text-caramel-gold mb-4">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h3 className="font-display font-bold text-2xl md:text-3xl text-caramel-dark mb-2">
-                    Message envoyé avec succès.
+                    {t("successTitle")}
                   </h3>
                   <p className="text-base text-caramel-dark/75 max-w-md leading-relaxed mb-8">
-                    Merci pour votre message. Notre équipe prendra contact avec vous dans les plus brefs délais.
+                    {t("successDesc")}
                   </p>
                   <button
                     type="button"
                     onClick={() => setIsSubmitted(false)}
-                    className="inline-flex items-center gap-2 border-b border-caramel-gold pb-1 uppercase tracking-widest text-xs font-semibold text-caramel-dark hover:text-caramel-gold transition-colors"
+                    className="inline-flex items-center gap-2 border-b border-caramel-gold pb-1 uppercase tracking-widest text-xs font-semibold text-caramel-dark hover:text-caramel-gold transition-colors cursor-pointer"
                   >
-                    <span>Envoyer un autre message</span>
-                    <span>→</span>
+                    <span>{t("sendAnother")}</span>
+                    <span className="rtl:rotate-180">→</span>
                   </button>
                 </motion.div>
               ) : (
                 <form
                   onSubmit={handleSubmit(onSubmit)}
-                  className="space-y-8"
+                  className="space-y-8 text-left rtl:text-right"
                   noValidate
                 >
                   {/* Name Input */}
@@ -169,7 +166,6 @@ export default function ContactSection({
                         htmlFor="email"
                         className="block text-xs font-bold uppercase tracking-widest text-caramel-dark/70 mb-2"
                       >
-                        Email <span className="text-royal-500">*</span>
                       </label>
                       <input
                         id="email"
@@ -181,7 +177,7 @@ export default function ContactSection({
                             message: "Adresse email invalide",
                           },
                         })}
-                        placeholder="contact@exemple.dz"
+                        placeholder={t("emailPlaceholder")}
                         className="w-full pb-3 pt-1 bg-transparent border-b border-caramel-gold/30 text-base text-caramel-dark placeholder:text-caramel-dark/30 focus:outline-none focus:border-caramel-gold transition-colors"
                       />
                       {errors.email && (
@@ -197,7 +193,7 @@ export default function ContactSection({
                         htmlFor="phone"
                         className="block text-xs font-bold uppercase tracking-widest text-caramel-dark/70 mb-2"
                       >
-                        Téléphone <span className="text-royal-500">*</span>
+                        {t("phone")}
                       </label>
                       <input
                         id="phone"
@@ -210,12 +206,11 @@ export default function ContactSection({
                           },
                         })}
                         onInput={(e) => {
-                          // Instantly removes any character that is not a number (0-9)
                           e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, "");
                         }}
                         pattern="^0[0-9]$"
                         title="Le numéro doit commencer par 0 ."
-                        placeholder="0XXX XX XX XX"
+                        placeholder={t("phonePlaceholder")}
                         className="w-full pb-3 pt-1 bg-transparent border-b border-caramel-gold/30 text-base text-caramel-dark placeholder:text-caramel-dark/30 focus:outline-none focus:border-caramel-gold transition-colors"
                       />
                       {errors.phone && (
@@ -233,7 +228,7 @@ export default function ContactSection({
                       htmlFor="message"
                       className="block text-xs font-bold uppercase tracking-widest text-caramel-dark/70 mb-2"
                     >
-                      Votre Message <span className="text-royal-500">*</span>
+                      {t("message")}
                     </label>
                     <textarea
                       id="message"
@@ -245,7 +240,7 @@ export default function ContactSection({
                           message: "Votre message doit comporter au moins 10 caractères",
                         },
                       })}
-                      placeholder="Décrivez votre projet, volume souhaité ou besoin spécifique..."
+                      placeholder={t("messagePlaceholder")}
                       className="w-full pb-3 pt-1 bg-transparent border-b border-caramel-gold/30 text-base text-caramel-dark placeholder:text-caramel-dark/30 focus:outline-none focus:border-caramel-gold transition-colors resize-y"
                     />
                     {errors.message && (
@@ -261,17 +256,19 @@ export default function ContactSection({
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center gap-3 border-b border-caramel-gold pb-1.5 uppercase tracking-widest text-sm font-semibold text-caramel-dark hover:text-caramel-gold transition-colors disabled:opacity-50 group"
+                      className="inline-flex items-center gap-3 border-b border-caramel-gold pb-1.5 uppercase tracking-widest text-sm font-semibold text-caramel-dark hover:text-caramel-gold transition-colors disabled:opacity-50 group cursor-pointer"
                     >
                       {isSubmitting ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin text-caramel-gold" />
-                          <span>Envoi en cours...</span>
+                          <span>{t("sending")}</span>
                         </>
                       ) : (
                         <>
-                          <span>Envoyer le message</span>
-                          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                          <span>{t("sendBtn")}</span>
+                          <span className="transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180">
+                            →
+                          </span>
                         </>
                       )}
                     </button>
@@ -282,10 +279,10 @@ export default function ContactSection({
           </div>
 
           {/* Right Column: Editorial Contact Details */}
-          <div className="lg:col-span-5 flex flex-col gap-10 lg:pl-6">
+          <div className="lg:col-span-5 flex flex-col gap-10 lg:pl-6 rtl:lg:pl-0 rtl:lg:pr-6 text-left rtl:text-right">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-caramel-gold block mb-2">
-                Unité de Production & Siège
+                {t("badge")}
               </span>
               <h3 className="font-display font-bold text-2xl sm:text-3xl text-caramel-dark mb-4">
                 {siteConfig.contact.company}
@@ -300,7 +297,7 @@ export default function ContactSection({
                 <MapPin className="w-5 h-5 text-caramel-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold text-caramel-dark block text-xs uppercase tracking-wider mb-0.5">
-                    Adresse
+                    {t("addressTitle")}
                   </span>
                   <a
                     href="https://maps.app.goo.gl/1itwaj2jUbF7AaAg6"
@@ -308,7 +305,7 @@ export default function ContactSection({
                     rel="noopener noreferrer"
                     className="hover:text-caramel-gold transition-colors leading-relaxed"
                   >
-                    {siteConfig.contact.address}
+                    {t("addressText")}
                   </a>
                 </div>
               </div>
@@ -317,13 +314,13 @@ export default function ContactSection({
                 <Phone className="w-5 h-5 text-caramel-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold text-caramel-dark block text-xs uppercase tracking-wider mb-0.5">
-                    Téléphone
+                    {t("phoneTitle")}
                   </span>
                   <a
                     href={`tel:${siteConfig.contact.phone}`}
                     className="hover:text-caramel-gold transition-colors font-medium"
                   >
-                    {siteConfig.contact.phoneFormatted}
+                    <span dir="ltr">{siteConfig.contact.phoneFormatted}</span>
                   </a>
                 </div>
               </div>
@@ -332,7 +329,7 @@ export default function ContactSection({
                 <Mail className="w-5 h-5 text-caramel-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold text-caramel-dark block text-xs uppercase tracking-wider mb-0.5">
-                    Email
+                    {t("emailTitle")}
                   </span>
                   <a
                     href={`mailto:${siteConfig.contact.email}`}
@@ -352,7 +349,7 @@ export default function ContactSection({
                   </span>
                   <div className="flex gap-4 items-center">
                     <a
-                      href="https://web.facebook.com/CNLcaramel"
+                      href={siteConfig.social.facebook.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Facebook"
@@ -361,7 +358,7 @@ export default function ContactSection({
                       <FacebookIcon className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://www.instagram.com/toffia_officiel"
+                      href={siteConfig.social.instagram.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram"
@@ -370,7 +367,7 @@ export default function ContactSection({
                       <InstagramIcon className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://www.tiktok.com/@cnl.caramel"
+                      href={siteConfig.social.tiktok.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="TikTok"
@@ -387,24 +384,13 @@ export default function ContactSection({
                 <Clock className="w-5 h-5 text-caramel-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold text-caramel-dark block text-xs uppercase tracking-wider mb-0.5">
-                    Horaires d&apos;ouverture
+                    {t("hoursTitle")}
                   </span>
-                  <span className="text-caramel-dark/75">Dimanche – Jeudi : 08h00 – 16h00</span>
+                  <span className="text-caramel-dark/75 whitespace-pre-line">{t("hoursText")}</span>
                 </div>
               </div>
             </div>
-
-            {/* Pro Service Note */}
-            <div className="pt-6 border-t border-caramel-gold/20">
-              <span className="text-xs font-bold uppercase tracking-widest text-caramel-dark block mb-1">
-                Espace Professionnels & Grossistes
-              </span>
-              <p className="text-sm text-caramel-dark/70 leading-relaxed">
-                Conditionnements adaptés (seaux de 5kg et 10kg), régularité technique et fiches techniques fournies sur demande.
-              </p>
-            </div>
           </div>
-
         </div>
       </div>
     </section>

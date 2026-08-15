@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { ArrowRight } from "lucide-react";
 
 export interface SignatureProps {
@@ -63,9 +64,8 @@ function ProductImage({
       }}
     >
       <div
-        className={`relative w-full h-full p-2 transition-transform duration-500 ease-out ${
-          isActive ? "scale-120 sm:scale-125 z-30" : "group-hover:scale-115"
-        }`}
+        className={`relative w-full h-full p-2 transition-transform duration-500 ease-out ${isActive ? "scale-120 sm:scale-125 z-30" : "group-hover:scale-115"
+          }`}
       >
         <Image
           src={src}
@@ -81,6 +81,7 @@ function ProductImage({
 }
 
 export default function Signature({ className }: SignatureProps) {
+  const t = useTranslations("signature");
   const [hovered1, setHovered1] = useState(false);
   const [hovered2, setHovered2] = useState(false);
   const [activeItem1, setActiveItem1] = useState<string | null>(null);
@@ -99,39 +100,35 @@ export default function Signature({ className }: SignatureProps) {
 
   return (
     <section
-      className={`py-14 sm:py-18 lg:py-24 relative overflow-hidden ${
-        className || ""
-      }`}
+      className={`py-14 sm:py-18 lg:py-24 relative overflow-hidden ${className || ""
+        }`}
       onClick={() => {
         setActiveItem1(null);
         setActiveItem2(null);
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-
         {/* ── Section Header ── */}
         <div className="text-center mb-10 sm:mb-14">
           <h2 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-caramel-900 tracking-tight mb-3">
-            Nos Créations & Spécialités
+            {t("title")}
           </h2>
 
           <p className="text-sm sm:text-base text-caramel-900/70 max-w-lg mx-auto leading-relaxed">
-            Découvrez nos saveurs artisanales créées avec passion et minutie
-            à Blida depuis 2011.
+            {t("subtitle")}
           </p>
         </div>
 
         {/* ── Gammes container ── */}
         <div className="flex flex-col gap-8 sm:gap-12 w-full">
-
           {/* ── Gamme 1 Row ── */}
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 bg-cream-100/40 rounded-3xl p-5 sm:p-7 border border-caramel-gold/20 shadow-sm">
-            <div className="flex md:flex-col items-baseline md:items-start justify-between md:justify-center flex-shrink-0 md:w-44 lg:w-52 pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-caramel-gold/25 md:pr-6">
+            <div className="flex md:flex-col items-baseline md:items-start justify-between md:justify-center flex-shrink-0 md:w-44 lg:w-52 pb-3 md:pb-0 border-b md:border-b-0 md:border-r rtl:md:border-r-0 rtl:md:border-l border-caramel-gold/25 md:pr-6 rtl:md:pr-0 rtl:md:pl-6">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-caramel-gold font-display">
-                Gamme 1
+                {t("gamme1Title")}
               </span>
               <span className="font-display font-semibold text-xs sm:text-sm text-caramel-dark/80 tracking-wide mt-0.5 md:mt-1">
-                Crèmes & Pâtes
+                {t("gamme1Subtitle")}
               </span>
             </div>
 
@@ -164,12 +161,12 @@ export default function Signature({ className }: SignatureProps) {
 
           {/* ── Gamme 2 Row ── */}
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 bg-cream-100/40 rounded-3xl p-5 sm:p-7 border border-caramel-gold/20 shadow-sm">
-            <div className="flex md:flex-col items-baseline md:items-start justify-between md:justify-center flex-shrink-0 md:w-44 lg:w-52 pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-caramel-gold/25 md:pr-6">
+            <div className="flex md:flex-col items-baseline md:items-start justify-between md:justify-center flex-shrink-0 md:w-44 lg:w-52 pb-3 md:pb-0 border-b md:border-b-0 md:border-r rtl:md:border-r-0 rtl:md:border-l border-caramel-gold/25 md:pr-6 rtl:md:pr-0 rtl:md:pl-6">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-caramel-gold font-display">
-                Gamme 2
+                {t("gamme2Title")}
               </span>
               <span className="font-display font-semibold text-xs sm:text-sm text-caramel-dark/80 tracking-wide mt-0.5 md:mt-1">
-                Nappages & Pro
+                {t("gamme2Subtitle")}
               </span>
             </div>
 
@@ -199,7 +196,6 @@ export default function Signature({ className }: SignatureProps) {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* ── Corporate Narrative ── */}
@@ -230,7 +226,6 @@ export default function Signature({ className }: SignatureProps) {
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
-
       </div>
     </section>
   );

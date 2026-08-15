@@ -1,0 +1,116 @@
+{
+  "common": {
+    "siteName": "TOFFIA",
+    "company": "CNL Caramel",
+    "tagline": "La Passion du Caramel depuis 2011",
+    "location": "Blida, Algérie",
+    "founded": "2011",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {current} sur {total}"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "products": "Produits",
+    "recipes": "Recettes",
+    "contact": "Contact",
+    "categories": "Nos Catégories",
+    "lang": "FR"
+  },
+  "hero": {
+    "titlePart1": "TOFFIA",
+    "titlePart2": "La Passion du",
+    "titleHighlight": "Caramel",
+    "titlePart3": "depuis 2011",
+    "descriptionPrefix": "L'excellence d'un savoir-faire authentique. Explorez notre",
+    "productsLink": "collection de produits",
+    "descriptionMiddle": "pensée pour les gourmands et les professionnels, ou plongez au cœur de",
+    "storyLink": "notre histoire",
+    "descriptionSuffix": "."
+  },
+  "signature": {
+    "title": "Nos Créations & Spécialités",
+    "subtitle": "Découvrez nos saveurs artisanales créées avec passion et minutie à Blida depuis 2011.",
+    "gamme1Title": "Gamme 1",
+    "gamme1Subtitle": "Crèmes & Pâtes",
+    "gamme2Title": "Gamme 2",
+    "gamme2Subtitle": "Nappages & Pro"
+  },
+  "factory": {
+    "title": "L'Art du Caramel d'Exception",
+    "subtitle": "De la confiserie d'art aux préparations pour grands chefs, chaque pot TOFFIA célèbre la noblesse des saveurs pures et l'onctuosité absolue.",
+    "card1Badge": "Sélection Signature",
+    "card1Eyebrow": "Pure Onctuosité & Caramélisation Maîtrisée",
+    "card1Title": "Le Geste Parfait pour Vos Desserts",
+    "card1Desc": "Élaboré avec du sucre pure canne caramélisé à cœur, du beurre doux et des arômes nobles pour sublimer tartes, entremets et pâtisseries fines.",
+    "card1BtnRecipes": "Inspirations Recettes",
+    "card1BtnProducts": "Voir la gamme",
+    "card2Eyebrow": "Pots Gourmands & Formats Professionnels",
+    "card2Title": "Crème de Pistache & Caramel Salé"
+  },
+  "productsPage": {
+    "title": "Nos Produits",
+    "subtitle": "Découvrez notre collection de caramels artisanaux, crèmes onctueuses et pâtes gourmandes, façonnées pour le plaisir familial et l'exigence des chefs pâtissiers."
+  },
+  "categories": {
+    "all": "Tous les produits",
+    "caramels-liquides": "Caramels Liquides",
+    "pates-a-tartiner": "Pâtes à Tartiner",
+    "nappages": "Nappages",
+    "gamme-pro": "Gamme Professionnelle"
+  },
+  "recipesPage": {
+    "title": "Recettes & Inspirations",
+    "subtitle": "Découvrez comment chefs pâtissiers et passionnés de gastronomie subliment leurs tartes, choux, entremets et créations avec les caramels et crèmes TOFFIA.",
+    "ingredients": "Ingrédients"
+  },
+  "aboutPage": {
+    "title": "Notre Histoire",
+    "story1Title": "Nos Racines",
+    "story1P1": "Née à Blida en 2011, l'histoire de CNL Caramel est celle d'une passion authentique pour la confiserie et l'artisanat d'excellence. Ce qui a commencé comme une quête rigoureuse du goût parfait et de la texture irrésistible s'est rapidement transformé en une véritable référence algérienne.",
+    "story1P2": "De cette expertise et de cet amour du métier est née notre marque phare, TOFFIA. Fièrement ancrée dans son terroir, notre unité de production façonne jour après jour des caramels liquides, des crèmes onctueuses, des nappages et des pâtes gourmandes. Qu'il s'agisse d'accompagner les artisans pâtissiers et restaurateurs les plus exigeants ou d'émerveiller les passionnés à la maison, nous mettons notre savoir-faire au service de créations authentiques et généreuses.",
+    "story2Title": "Maison Fondée en 2011",
+    "story2P1": "Profondément ancrée dans ses origines, notre maison perpétue un savoir-faire unique qui allie la noblesse des méthodes traditionnelles à la précision des technologies modernes.",
+    "story2P2": "Chez CNL Caramel, nous croyons fermement qu'un caramel d'exception naît du respect absolu des ingrédients, du temps et du goût. De la sélection rigoureuse de nos matières premières (noisettes, pistaches, cacahuètes torréfiées et ingrédients de premier choix) jusqu'à la maîtrise parfaite des cuissons, chaque étape est pensée avec exigence. Notre engagement quotidien : maintenir une qualité irréprochable tout en faisant rayonner l'excellence du caramel algérien, ici et ailleurs.",
+    "missionQuote": "« Faire rayonner l'excellence du caramel algérien. »",
+    "missionDesc": "Notre ambition est de prouver au quotidien qu'un caramel d'exception, alliant pureté des saveurs, texture irréprochable et maîtrise technique, peut naître et grandir en Algérie pour inspirer gourmands et créateurs gastronomiques.",
+    "missionBtnProducts": "Découvrir nos créations",
+    "missionBtnContact": "Nous contacter"
+  },
+  "contactPage": {
+    "badge": "Contact Direct & Commandes",
+    "title": "Contactez Notre Maison",
+    "subtitle": "Pour vos commandes professionnelles, vos partenariats de distribution ou toute question gourmande sur nos gammes, nos conseillers à Blida vous répondent avec attention.",
+    "addressTitle": "Unité de Production",
+    "addressText": "Centre Benkhelil Lot N°01 - GPR 329 - SEC09, 09000 Blida, Algérie",
+    "phoneTitle": "Téléphone & WhatsApp",
+    "emailTitle": "Email Officiel",
+    "hoursTitle": "Horaires d'Ouverture",
+    "hoursText": "Samedi – Jeudi : 08h00 – 17h00\nVendredi : Fermé",
+    "formTitle": "Envoyez-nous un Message",
+    "formSubtitle": "Remplissez ce formulaire et un conseiller dédié vous contactera dans les meilleurs délais.",
+    "fullName": "Nom complet *",
+    "fullNamePlaceholder": "ex. Ouassim Sihamda",
+    "email": "Adresse email *",
+    "emailPlaceholder": "ex. contact@exemple.dz",
+    "phone": "Numéro de téléphone *",
+    "phonePlaceholder": "ex. 0550 12 34 56",
+    "message": "Votre message *",
+    "messagePlaceholder": "Précisez votre demande (produits souhaités, volumes, partenariats...)",
+    "sendBtn": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "successTitle": "Message envoyé avec succès !",
+    "successDesc": "Merci de nous avoir contactés. Notre équipe commerciale prendra contact avec vous très rapidement.",
+    "sendAnother": "Envoyer un autre message",
+    "errorTitle": "Une erreur est survenue",
+    "errorDesc": "Veuillez vérifier vos informations et réessayer."
+  },
+  "footer": {
+    "desc": "Maison artisanale fondée en 2011 à Blida. Caramels fondants, crèmes onctueuses et nappages gastronomiques pour les passionnés et les maîtres artisans.",
+    "navigationTitle": "Navigation",
+    "productsTitle": "Nos Gammes",
+    "contactTitle": "Contact & Atelier",
+    "copyright": "© 2026 CNL Caramel · Tous droits réservés"
+  }
+}

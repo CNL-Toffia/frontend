@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   X,
@@ -12,6 +12,7 @@ import {
   Mail,
   MapPin,
   ArrowRight,
+  Globe,
 } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -51,8 +52,29 @@ const itemVariants: Variants = {
 };
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const t = useTranslations("nav");
+  const tCategories = useTranslations("categories");
+  const tCommon = useTranslations("common");
+  const locale = useLocale();
+  const router = useRouter();
   const pathname = usePathname();
   const [productsExpanded, setProductsExpanded] = useState(false);
+  const [langExpanded, setLangExpanded] = useState(false);
+
+  const handleLanguageChange = (newLocale: "fr" | "ar") => {
+    if (newLocale !== locale) {
+      router.replace(pathname, { locale: newLocale });
+      onClose();
+    }
+  };
+
+  const navItems = [
+    { label: t("home"), href: "/" },
+    { label: t("about"), href: "/a-propos" },
+    { label: t("products"), href: "/produits", dropdown: true },
+    { label: t("recipes"), href: "/recettes" },
+    { label: t("contact"), href: "/contact" },
+  ];
 
   return (
     <AnimatePresence>
@@ -75,7 +97,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 bottom-0 w-full sm:w-[380px] bg-caramel-900 text-cream z-50 shadow-2xl flex flex-col justify-between overflow-y-auto lg:hidden"
+            className="fixed top-0 right-0 bottom-0 rtl:right-auto rtl:left-0 w-full sm:w-[380px] bg-caramel-900 text-cream z-50 shadow-2xl flex flex-col justify-between overflow-y-auto lg:hidden"
           >
             {/* Header with Brand & Close Button */}
             <div className="p-6 border-b border-caramel-700/50 flex items-center justify-between">
@@ -93,12 +115,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     className="w-9 h-9 object-contain drop-shadow-md"
                   />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col text-left rtl:text-right">
                   <span className="font-display font-bold text-xl tracking-wider text-cream">
-                    TOFFIA
+                    {tCommon("siteName")}
                   </span>
                   <span className="text-[10px] text-caramel-300 uppercase tracking-widest -mt-1">
-                    CNL Caramel
+                    {tCommon("company")}
                   </span>
                 </div>
               </Link>
@@ -106,22 +128,103 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="w-10 h-10 rounded-full bg-caramel-700/60 hover:bg-caramel-700 flex items-center justify-center text-cream hover:text-caramel-gold transition-colors focus:outline-none focus:ring-2 focus:ring-caramel-gold"
+                className="w-10 h-10 rounded-full bg-caramel-700/60 hover:bg-caramel-700 flex items-center justify-center text-cream hover:text-caramel-gold transition-colors focus:outline-none focus:ring-2 focus:ring-caramel-gold cursor-pointer"
                 aria-label="Fermer le menu"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
+            {/* Modern Language Dropdown in Drawer Header */}
+            <div className="px-6 py-3 bg-caramel-950/40 border-b border-caramel-700/40">
+              <button
+                type="button"
+                onClick={() => setLangExpanded(!langExpanded)}
+                className="w-full flex items-center justify-between py-1 text-xs text-caramel-200 hover:text-caramel-gold transition-colors cursor-pointer"
+              >
+                <span className="flex items-center gap-2 font-medium">
+                  <Globe className="w-3.5 h-3.5 text-caramel-gold" />
+                  <span>{locale === "fr" ? "Langue : Français" : "اللغة : العربية"}</span>
+                </span>
+                <span
+                  className={`text-xs font-bold text-caramel-gold inline-block transition-transform duration-200 ${
+                    langExpanded ? "rotate-90" : ""
+                  }`}
+                >
+                  &rsaquo;
+                </span>
+              </button>
+
+              <AnimatePresence>
+                {langExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    className="overflow-hidden pt-2 flex flex-col gap-1"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => handleLanguageChange("fr")}
+                      className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                        locale === "fr"
+                          ? "bg-caramel-700/80 text-caramel-gold border border-caramel-gold/30 font-bold"
+                          : "text-caramel-200 hover:bg-caramel-800/60 hover:text-cream"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-caramel-900/60 text-caramel-gold border border-caramel-gold/20 font-mono">
+                          FR
+                        </span>
+                        <span>Français</span>
+                      </div>
+                      {locale === "fr" ? (
+                        <span className="w-1.5 h-1.5 rounded-full bg-caramel-gold shadow-sm" />
+                      ) : (
+                        <span className="text-[10px] font-mono font-bold text-caramel-gold opacity-60">
+                          &gt;
+                        </span>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleLanguageChange("ar")}
+                      className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                        locale === "ar"
+                          ? "bg-caramel-700/80 text-caramel-gold border border-caramel-gold/30 font-bold"
+                          : "text-caramel-200 hover:bg-caramel-800/60 hover:text-cream"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-caramel-900/60 text-caramel-gold border border-caramel-gold/20 font-mono">
+                          AR
+                        </span>
+                        <span>العربية</span>
+                      </div>
+                      {locale === "ar" ? (
+                        <span className="w-1.5 h-1.5 rounded-full bg-caramel-gold shadow-sm" />
+                      ) : (
+                        <span className="text-[10px] font-mono font-bold text-caramel-gold opacity-60">
+                          &gt;
+                        </span>
+                      )}
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Navigation links */}
-            <nav className="p-6 flex-1 flex flex-col gap-2">
-              {siteConfig.nav.map((item) => {
+            <nav className="p-6 flex-1 flex flex-col gap-2 text-left rtl:text-right">
+              {navItems.map((item) => {
                 const isActive = pathname === item.href;
 
                 if (item.dropdown) {
                   return (
                     <motion.div
-                      key={item.label}
+                      key={item.href}
                       variants={itemVariants}
                       className="flex flex-col"
                     >
@@ -144,7 +247,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         />
                       </button>
 
-                      {/* Dropdown items accordion matching PC style with '>' icon */}
+                      {/* Dropdown items accordion */}
                       <AnimatePresence>
                         {productsExpanded && (
                           <motion.div
@@ -152,7 +255,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.2, ease: "easeInOut" }}
-                            className="overflow-hidden pl-3 pr-1 py-1 flex flex-col gap-1"
+                            className="overflow-hidden pl-3 pr-1 rtl:pr-3 rtl:pl-1 py-1 flex flex-col gap-1"
                           >
                             {siteConfig.productCategories.map((cat) => (
                               <Link
@@ -171,8 +274,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                                 }}
                                 className="flex items-center justify-between py-2.5 px-4 rounded-xl text-sm text-caramel-100 hover:text-cream hover:bg-caramel-700/40 transition-all duration-150 group"
                               >
-                                <span>{cat.name}</span>
-                                <span className="text-xs font-mono font-bold text-caramel-gold opacity-70 group-hover:opacity-100 transform -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
+                                <span>{tCategories(cat.id as any)}</span>
+                                <span className="text-xs font-mono font-bold text-caramel-gold opacity-70 group-hover:opacity-100 transform -translate-x-1 group-hover:translate-x-0 rtl:translate-x-1 rtl:group-hover:translate-x-0 transition-all duration-200">
                                   &gt;
                                 </span>
                               </Link>
@@ -185,7 +288,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 }
 
                 return (
-                  <motion.div key={item.label} variants={itemVariants}>
+                  <motion.div key={item.href} variants={itemVariants}>
                     <Link
                       href={item.href}
                       onClick={onClose}
@@ -208,20 +311,20 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   onClick={onClose}
                   className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-gradient-to-r from-caramel-gold to-caramel-300 text-caramel-900 font-semibold shadow-warm hover:brightness-105 transition-all text-sm"
                 >
-                  <span>Explorer nos produits</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>{t("products")}</span>
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
               </motion.div>
             </nav>
 
             {/* Quick Contact & Info footer */}
-            <div className="p-6 bg-caramel-950/40 border-t border-caramel-700/40 flex flex-col gap-3 text-xs text-caramel-100">
+            <div className="p-6 bg-caramel-950/40 border-t border-caramel-700/40 flex flex-col gap-3 text-xs text-caramel-100 text-left rtl:text-right">
               <a
                 href={`tel:${siteConfig.contact.phone}`}
                 className="flex items-center gap-2.5 hover:text-caramel-gold transition-colors"
               >
                 <Phone className="w-4 h-4 text-caramel-gold flex-shrink-0" />
-                <span>{siteConfig.contact.phoneFormatted}</span>
+                <span dir="ltr">{siteConfig.contact.phoneFormatted}</span>
               </a>
 
               <a

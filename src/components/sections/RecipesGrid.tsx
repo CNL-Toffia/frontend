@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { recipes } from "@/data/recipes";
 import RecipeCard from "@/components/ui/RecipeCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -12,6 +13,7 @@ export interface RecipesGridProps {
 }
 
 export default function RecipesGrid({ className }: RecipesGridProps) {
+  const tCommon = useTranslations("common");
   const [currentPage, setCurrentPage] = useState(1);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +32,6 @@ export default function RecipesGrid({ className }: RecipesGridProps) {
   const goToPage = useCallback(
     (page: number) => {
       setCurrentPage(page);
-      // Small delay so the DOM re-renders before scrolling
       setTimeout(scrollToGrid, 80);
     },
     [scrollToGrid]
@@ -49,7 +50,7 @@ export default function RecipesGrid({ className }: RecipesGridProps) {
           ))}
         </div>
 
-        {/* Pagination — only visible when more than ITEMS_PER_PAGE recipes */}
+        {/* Pagination */}
         {recipes.length > ITEMS_PER_PAGE && (
           <nav
             aria-label="Pagination des recettes"
@@ -59,10 +60,10 @@ export default function RecipesGrid({ className }: RecipesGridProps) {
             <button
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-caramel-dark border border-caramel-gold/30 rounded-lg hover:bg-caramel-gold/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-caramel-dark border border-caramel-gold/30 rounded-lg hover:bg-caramel-gold/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
-              <ChevronLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">Précédent</span>
+              <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
+              <span className="hidden sm:inline">{tCommon("prev")}</span>
             </button>
 
             {/* Page Number Buttons */}
@@ -72,7 +73,7 @@ export default function RecipesGrid({ className }: RecipesGridProps) {
                   key={page}
                   onClick={() => goToPage(page)}
                   aria-current={page === currentPage ? "page" : undefined}
-                  className={`min-w-[40px] h-10 rounded-lg text-sm font-semibold transition-colors ${
+                  className={`min-w-[40px] h-10 rounded-lg text-sm font-semibold transition-colors cursor-pointer ${
                     page === currentPage
                       ? "bg-caramel-gold text-white shadow-sm"
                       : "text-caramel-dark border border-caramel-gold/30 hover:bg-caramel-gold/10"
@@ -87,10 +88,10 @@ export default function RecipesGrid({ className }: RecipesGridProps) {
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-caramel-dark border border-caramel-gold/30 rounded-lg hover:bg-caramel-gold/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-caramel-dark border border-caramel-gold/30 rounded-lg hover:bg-caramel-gold/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
-              <span className="hidden sm:inline">Suivant</span>
-              <ChevronRight className="w-4 h-4" />
+              <span className="hidden sm:inline">{tCommon("next")}</span>
+              <ChevronRight className="w-4 h-4 rtl:rotate-180" />
             </button>
           </nav>
         )}

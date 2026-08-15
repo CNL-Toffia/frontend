@@ -40,6 +40,14 @@ body {
   min-height: 100vh;
 }
 
+[dir="rtl"] {
+  font-family: var(--font-arabic), "Cairo", system-ui, sans-serif;
+}
+
+[dir="rtl"] .font-display {
+  font-family: var(--font-arabic), "Cairo", system-ui, sans-serif;
+}
+
 /* Custom scrollbar matching caramel aesthetic */
 ::-webkit-scrollbar {
   width: 10px;
@@ -58,45 +66,7 @@ body {
   background: #ECA315;
 }
 
-/* Organic Morphing Caramel Blob */
-@keyframes morph-blob {
-  0%, 100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    transform: rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
-    transform: rotate(45deg) scale(1.05);
-  }
-  50% {
-    border-radius: 50% 60% 30% 70% / 30% 50% 70% 50%;
-    transform: rotate(90deg) scale(0.95);
-  }
-  75% {
-    border-radius: 70% 30% 50% 50% / 60% 40% 60% 40%;
-    transform: rotate(135deg) scale(1.03);
-  }
-}
-
-.animate-morph-blob {
-  animation: morph-blob 9s ease-in-out infinite alternate;
-}
-
-/* Fluid Organic Floating Animation */
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-14px) rotate(1deg);
-  }
-}
-
-.animate-float-slow {
-  animation: float-slow 4.5s ease-in-out infinite;
-}
-
-/* Seamless Marquee Animations */
+/* Seamless Marquee Animation */
 @keyframes marquee-ltr {
   0% {
     transform: translateX(-50%);
@@ -106,21 +76,8 @@ body {
   }
 }
 
-@keyframes marquee-rtl {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
 .animate-marquee-ltr {
   animation: marquee-ltr 40s linear infinite;
-}
-
-.animate-marquee-rtl {
-  animation: marquee-rtl 40s linear infinite;
 }
 
 /* Hide scrollbar for horizontal scroll containers */
