@@ -126,7 +126,7 @@ export default function ContactSection({
                       htmlFor="fullName"
                       className="block text-xs font-bold uppercase tracking-widest text-caramel-dark/70 mb-2"
                     >
-                      Nom complet <span className="text-royal-500">*</span>
+                      {t("fullName")}
                     </label>
                     <input
                       id="fullName"
@@ -148,7 +148,7 @@ export default function ContactSection({
                       }}
                       pattern="^[a-zA-ZÀ-ÿ\s]+$"
                       title="Veuillez n'utiliser que des lettres et des espaces."
-                      placeholder="Ex: Ouassim Sihamda"
+                      placeholder={t("fullNamePlaceholder")}
                       className="w-full pb-3 pt-1 bg-transparent border-b border-caramel-gold/30 text-base text-caramel-dark placeholder:text-caramel-dark/30 focus:outline-none focus:border-caramel-gold transition-colors"
                     />
                     {errors.fullName && (
@@ -166,6 +166,7 @@ export default function ContactSection({
                         htmlFor="email"
                         className="block text-xs font-bold uppercase tracking-widest text-caramel-dark/70 mb-2"
                       >
+                        {t("email")}
                       </label>
                       <input
                         id="email"
