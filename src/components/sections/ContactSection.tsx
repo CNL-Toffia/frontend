@@ -132,22 +132,20 @@ export default function ContactSection({
                       id="fullName"
                       type="text"
                       {...register("fullName", {
-                        required: "Veuillez renseigner votre nom complet",
+                        required: t("validationNameRequired"),
                         minLength: {
                           value: 2,
-                          message: "Le nom doit comporter au moins 2 caractères",
+                          message: t("validationNamePattern"),
                         },
                         pattern: {
-                          value: /^[a-zA-ZÀ-ÿ\s]+$/,
-                          message: "Veuillez n'utiliser que des lettres et des espaces.",
+                          value: /^[a-zA-ZÀ-ÿ\u0600-\u06FF\s]+$/,
+                          message: t("validationNamePattern"),
                         },
                       })}
                       onInput={(e) => {
-                        // Instantly removes any character that is not a letter (including accents) or a space
-                        e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+                        // Allows Latin letters (with accents), Arabic letters, and spaces
+                        e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-ZÀ-ÿ\u0600-\u06FF\s]/g, "");
                       }}
-                      pattern="^[a-zA-ZÀ-ÿ\s]+$"
-                      title="Veuillez n'utiliser que des lettres et des espaces."
                       placeholder={t("fullNamePlaceholder")}
                       className="w-full pb-3 pt-1 bg-transparent border-b border-caramel-gold/30 text-base text-caramel-dark placeholder:text-caramel-dark/30 focus:outline-none focus:border-caramel-gold transition-colors"
                     />
@@ -172,10 +170,10 @@ export default function ContactSection({
                         id="email"
                         type="email"
                         {...register("email", {
-                          required: "Veuillez renseigner votre adresse email",
+                          required: t("validationEmailRequired"),
                           pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "Adresse email invalide",
+                            message: t("validationEmailPattern"),
                           },
                         })}
                         placeholder={t("emailPlaceholder")}
@@ -200,17 +198,15 @@ export default function ContactSection({
                         id="phone"
                         type="tel"
                         {...register("phone", {
-                          required: "Veuillez renseigner votre numéro de téléphone",
+                          required: t("validationPhoneRequired"),
                           pattern: {
                             value: /^0[0-9]+$/,
-                            message: "Le numéro doit commencer par 0 .",
+                            message: t("validationPhonePattern"),
                           },
                         })}
                         onInput={(e) => {
                           e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, "");
                         }}
-                        pattern="^0[0-9]$"
-                        title="Le numéro doit commencer par 0 ."
                         placeholder={t("phonePlaceholder")}
                         className="w-full pb-3 pt-1 bg-transparent border-b border-caramel-gold/30 text-base text-caramel-dark placeholder:text-caramel-dark/30 focus:outline-none focus:border-caramel-gold transition-colors"
                       />
@@ -235,10 +231,10 @@ export default function ContactSection({
                       id="message"
                       rows={4}
                       {...register("message", {
-                        required: "Veuillez écrire votre message",
+                        required: t("validationMessageRequired"),
                         minLength: {
                           value: 10,
-                          message: "Votre message doit comporter au moins 10 caractères",
+                          message: t("validationMessageMin"),
                         },
                       })}
                       placeholder={t("messagePlaceholder")}
@@ -289,7 +285,7 @@ export default function ContactSection({
                 {siteConfig.contact.company}
               </h3>
               <p className="text-base text-caramel-dark/75 leading-relaxed">
-                Maison artisanale fondée en 2011 à Blida, dédiée à l&apos;excellence du caramel et des spécialités gourmandes.
+                {t("companyDesc")}
               </p>
             </div>
 
@@ -346,7 +342,7 @@ export default function ContactSection({
                 <Share2 className="w-5 h-5 text-caramel-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold text-caramel-dark block text-xs uppercase tracking-wider mb-2">
-                    Réseaux Sociaux
+                    {t("socialTitle")}
                   </span>
                   <div className="flex gap-4 items-center">
                     <a

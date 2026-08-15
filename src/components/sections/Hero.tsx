@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,7 +10,9 @@ export interface FlavorSlide {
   id: string;
   image: string;
   name: string;
+  name_ar: string;
   tag: string;
+  tag_ar: string;
 }
 
 const flavorSlides: FlavorSlide[] = [
@@ -18,24 +20,32 @@ const flavorSlides: FlavorSlide[] = [
     id: "caramel",
     image: "/multipProduct1.png",
     name: "Caramel Signature",
+    name_ar: "كراميل سيغناتور",
     tag: "Artisanal & Fondant",
+    tag_ar: "حرفي وذائب",
   },
   {
     id: "noisette",
     image: "/multipProduct2.png",
     name: "Pâte de Noisette",
+    name_ar: "عجينة البندق الفاخرة",
     tag: "100% Saveur Intense",
+    tag_ar: "نكهة غنية 100%",
   },
   {
     id: "pistache",
     image: "/multipProduct3.png",
     name: "Crème de Pistache",
+    name_ar: "كريمة الفستق",
     tag: "Onctuosité Noble",
+    tag_ar: "نعومة فائقة",
   },
 ];
 
 export default function Hero() {
   const t = useTranslations("hero");
+  const locale = useLocale();
+  const isAr = locale === "ar";
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
@@ -113,7 +123,11 @@ export default function Hero() {
                 >
                   <Image
                     src={current.image}
-                    alt={`Gamme ${current.name} TOFFIA CNL Caramel`}
+                    alt={
+                      isAr
+                        ? `تشكيلة ${current.name_ar} توفيا سي إن إل كراميل`
+                        : `Gamme ${current.name} TOFFIA CNL Caramel`
+                    }
                     fill
                     sizes="(max-width: 768px) 100vw, 620px"
                     className="object-contain object-center drop-shadow-[0_16px_28px_rgba(92,37,24,0.18)]"

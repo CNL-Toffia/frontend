@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 
 export interface AboutStoryProps {
@@ -11,6 +11,8 @@ export interface AboutStoryProps {
 
 export default function AboutStory({ className }: AboutStoryProps) {
   const t = useTranslations("aboutPage");
+  const locale = useLocale();
+  const isAr = locale === "ar";
 
   return (
     <section className={`bg-cream relative overflow-hidden ${className || ""}`}>
@@ -29,7 +31,7 @@ export default function AboutStory({ className }: AboutStoryProps) {
             <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden flex items-center justify-center p-8 sm:p-12">
               <Image
                 src="/CnlLogo.png"
-                alt="Logo officiel CNL Caramel TOFFIA"
+                alt={isAr ? "شعار سي إن إل كراميل توفيا" : "Logo officiel CNL Caramel TOFFIA"}
                 width={380}
                 height={380}
                 className="object-contain max-h-64 sm:max-h-80 w-auto"
@@ -88,7 +90,7 @@ export default function AboutStory({ className }: AboutStoryProps) {
             <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-xl overflow-hidden">
               <Image
                 src="/caramel1.png"
-                alt="Savoir-faire et fabrication artisanale TOFFIA"
+                alt={isAr ? "الخبرة والصناعة الحرفية توفيا" : "Savoir-faire et fabrication artisanale TOFFIA"}
                 fill
                 sizes="(max-width: 768px) 100vw, 600px"
                 className="object-cover object-center"

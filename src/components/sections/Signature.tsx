@@ -201,10 +201,7 @@ export default function Signature({ className }: SignatureProps) {
         {/* ── Corporate Narrative ── */}
         <div className="text-center max-w-2xl mx-auto mt-14 sm:mt-18 mb-8 sm:mb-10 px-2">
           <p className="text-sm sm:text-base md:text-lg text-caramel-dark/85 font-normal leading-relaxed">
-            Guidés par la passion et l&apos;exigence, nous sélectionnons les meilleurs
-            ingrédients pour vous offrir un caramel d&apos;exception. Une texture
-            parfaite, un goût authentique : l&apos;allié incontournable de vos plus
-            belles créations.
+            {t("narrative")}
           </p>
         </div>
 
@@ -214,16 +211,16 @@ export default function Signature({ className }: SignatureProps) {
             href="/produits"
             className="inline-flex items-center gap-2 border-b-2 border-caramel-gold/70 pb-1 uppercase tracking-widest text-xs sm:text-sm font-bold text-caramel-dark hover:text-caramel-gold hover:border-caramel-gold transition-all duration-300 group"
           >
-            <span>Découvrir la Gamme</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            <span>{t("btnProducts")}</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180" />
           </Link>
 
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 border-b-2 border-caramel-gold/70 pb-1 uppercase tracking-widest text-xs sm:text-sm font-bold text-caramel-dark hover:text-caramel-gold hover:border-caramel-gold transition-all duration-300 group"
           >
-            <span>Catalogue Professionnel</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            <span>{t("btnPro")}</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180" />
           </Link>
         </div>
       </div>

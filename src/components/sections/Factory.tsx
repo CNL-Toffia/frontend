@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -13,6 +13,8 @@ export interface FactoryProps {
 
 export default function Factory({ className }: FactoryProps) {
   const t = useTranslations("factory");
+  const locale = useLocale();
+  const isAr = locale === "ar";
 
   return (
     <section className={`py-16 sm:py-20 lg:py-24 relative overflow-hidden ${className || ""}`}>
@@ -40,7 +42,11 @@ export default function Factory({ className }: FactoryProps) {
           >
             <Image
               src="/ad-banner-1.jpg"
-              alt="Campagne publicitaire TOFFIA — Gâteau gourmand et tourbillon de caramel doré"
+              alt={
+                isAr
+                  ? "حملة إعلانية توفيا — كعكة فاخرة ودوامة من الكراميل الذهبي"
+                  : "Campagne publicitaire TOFFIA — Gâteau gourmand et tourbillon de caramel doré"
+              }
               fill
               sizes="(max-width: 1024px) 100vw, 750px"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -99,7 +105,11 @@ export default function Factory({ className }: FactoryProps) {
             >
               <Image
                 src="/ad-banner-2.jpg"
-                alt="Pots d'exception TOFFIA Caramel et Crème de Pistache"
+                alt={
+                  isAr
+                    ? "برطمانات توفيا الفاخرة كراميل وكريمة الفستق"
+                    : "Pots d'exception TOFFIA Caramel et Crème de Pistache"
+                }
                 fill
                 sizes="(max-width: 1024px) 100vw, 500px"
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"

@@ -53,7 +53,7 @@ export default function RecipesGrid({ className }: RecipesGridProps) {
         {/* Pagination */}
         {recipes.length > ITEMS_PER_PAGE && (
           <nav
-            aria-label="Pagination des recettes"
+            aria-label={tCommon("paginationRecipes")}
             className="mt-16 flex items-center justify-center gap-2"
           >
             {/* Previous Button */}

@@ -1,23 +1,35 @@
 export interface Recipe {
   id: string;
   title: string;
+  title_ar?: string;
   prepTime: string;
+  prepTime_ar?: string;
   difficulty: "Facile" | "Moyen" | "Avancé";
+  difficulty_ar?: string;
   description: string;
+  description_ar?: string;
   productUsed: string;
+  productUsed_ar?: string;
   image: string;
   ingredients: string[];
+  ingredients_ar?: string[];
   steps?: string[];
+  steps_ar?: string[];
 }
 
 export const recipes: Recipe[] = [
   {
     id: "tartelette-caramel-pecan",
     title: "Tartelettes Sablées au Caramel & Noix de Pécan",
+    title_ar: "تارت صابليه بكراميل توفيا وجوز البيكان",
     prepTime: "35 min",
+    prepTime_ar: "35 دقيقة",
     difficulty: "Moyen",
+    difficulty_ar: "متوسط",
     description: "Une pâte sablée croustillante garnie d'un lit généreux de Crème Caramel TOFFIA et de noix de pécan caramélisées.",
+    description_ar: "عجينة صابليه مقرمشة مغطاة بطبقة سخية من كريمة كراميل توفيا وحبات جوز البيكان المكرملة.",
     productUsed: "Crème Caramel TOFFIA",
+    productUsed_ar: "كريمة كراميل توفيا",
     image: "/caramel2.png",
     ingredients: [
       "250g de pâte sablée pur beurre",
@@ -25,14 +37,25 @@ export const recipes: Recipe[] = [
       "100g de noix de pécan entières torréfiées",
       "Une pincée de fleur de sel",
     ],
+    ingredients_ar: [
+      "250غ عجينة صابليه بالزبدة الطبيعية",
+      "200غ كريمة كراميل توفيا",
+      "100غ جوز بيكان كامل محمص",
+      "رشة زهرة الملح",
+    ],
   },
   {
     id: "choux-creme-pistache",
     title: "Choux Craquelin à la Crème de Pistache",
+    title_ar: "شُو كراكولان بكريمة الفستق",
     prepTime: "45 min",
+    prepTime_ar: "45 دقيقة",
     difficulty: "Avancé",
+    difficulty_ar: "متقدم",
     description: "Des choux aériens au craquelin doré, garnis d'une ganache onctueuse montée à la Crème de Pistache TOFFIA.",
+    description_ar: "قطع شُو خفيفة بطبقة كراكولان ذهبية، محشوة بغاناش فاخر مخفوق بكريمة فستق توفيا.",
     productUsed: "Crème de Pistache TOFFIA",
+    productUsed_ar: "كريمة فستق توفيا",
     image: "/caramel4.png",
     ingredients: [
       "12 choux avec craquelin doré",
@@ -40,14 +63,25 @@ export const recipes: Recipe[] = [
       "150g de Crème de Pistache TOFFIA",
       "Éclats de pistaches grillées pour le décor",
     ],
+    ingredients_ar: [
+      "12 حبة شُو بكراكولان ذهبي",
+      "250غ كريمة خفق مع ماسكاربوني",
+      "150غ كريمة فستق توفيا",
+      "رقائق فستق محمص للتزيين",
+    ],
   },
   {
     id: "moelleux-coeur-caramel",
     title: "Fondant Chocolat Noir & Cœur Coulant Caramel",
+    title_ar: "فوندان الشوكولاتة السوداء بقلب الكراميل الذائب",
     prepTime: "25 min",
+    prepTime_ar: "25 دقيقة",
     difficulty: "Facile",
+    difficulty_ar: "سهل",
     description: "Le classique réinventé avec un insert fondant de caramel TOFFIA qui s'échappe à la première bouchée.",
+    description_ar: "الحلوى الكلاسيكية بلمسة مميزة مع قلب غني من كراميل توفيا يتدفق مع أول قضمة.",
     productUsed: "Crème Caramel TOFFIA",
+    productUsed_ar: "كريمة كراميل توفيا",
     image: "/caramel3.png",
     ingredients: [
       "200g de chocolat noir 70%",
@@ -55,14 +89,25 @@ export const recipes: Recipe[] = [
       "3 œufs entiers",
       "6 généreuses cuillères de Crème Caramel TOFFIA",
     ],
+    ingredients_ar: [
+      "200غ شوكولاتة سوداء 70%",
+      "120غ زبدة طرية",
+      "3 بيضات كاملة",
+      "6 ملاعق سخية من كريمة كراميل توفيا",
+    ],
   },
   {
     id: "entremets-miroir-caramel-noisette",
     title: "Entremets Miroir Caramel & Noisettes Torréfiées",
+    title_ar: "أنترومي ميروار كراميل بالبندق المحمص",
     prepTime: "1h 15 min",
+    prepTime_ar: "ساعة و15 دقيقة",
     difficulty: "Avancé",
+    difficulty_ar: "متقدم",
     description: "Mousse légère aux noisettes, biscuit dacquoise et glaçage miroir ultra-brillant au caramel TOFFIA.",
+    description_ar: "موس خفيف بالبندق، وبسكويت داكواز وتغليف مرآة فائق اللمعان بكراميل توفيا.",
     productUsed: "Nappage Miroir Caramel & Crème Noisettes",
+    productUsed_ar: "تغليف مرآة كراميل وكريمة بندق توفيا",
     image: "/caramel1.png",
     ingredients: [
       "Biscuit dacquoise noisette",
@@ -70,43 +115,73 @@ export const recipes: Recipe[] = [
       "150g de Nappage Miroir Caramel TOFFIA",
       "Noisettes du Piémont torréfiées",
     ],
+    ingredients_ar: [
+      "بسكويت داكواز بالبندق",
+      "موس خفيف بكريمة بندق توفيا",
+      "150غ تغليف مرآة كراميل توفيا",
+      "بندق محمص عالي الجودة",
+    ],
   },
   {
     id: "gaufres-caramel-chaud",
     title: "Gaufres Liégeoises & Nappage Caramel Gourmand",
+    title_ar: "وافل لييج المقرمش بصوص الكراميل الدافئ",
     prepTime: "20 min",
+    prepTime_ar: "20 دقيقة",
     difficulty: "Facile",
+    difficulty_ar: "سهل",
     description: "Gaufres caramélisées croustillantes, surmontées d'un filet généreux de caramel chaud TOFFIA.",
+    description_ar: "وافل مكرمل ومقرمش، مسكوب عليه خيط سخي من كراميل توفيا الدافئ.",
     productUsed: "Caramel Liquide TOFFIA",
+    productUsed_ar: "كراميل سائل توفيا",
     image: "/caramel2.png",
     ingredients: [
       "4 gaufres liégeoises croustillantes",
       "Nappage caramel TOFFIA tiédi",
       "Chantilly maison vanillée",
     ],
+    ingredients_ar: [
+      "4 قطع وافل لييج مقرمشة",
+      "صلصة كراميل توفيا دافئة",
+      "كريمة شانتيي منزلية بالفانيليا",
+    ],
   },
   {
     id: "cookie-coeur-cacahuete",
     title: "Cookies Gourmands Cœur Beurre de Cacahuètes",
+    title_ar: "كوكيز بقلب زبدة الفول السوداني والكراميل",
     prepTime: "30 min",
+    prepTime_ar: "30 دقيقة",
     difficulty: "Facile",
+    difficulty_ar: "سهل",
     description: "Cookies crousti-fondants avec un insert crémeux au Beurre de Cacahuètes TOFFIA et éclats de caramel mou.",
+    description_ar: "كوكيز مقرمش وهش مع حشو كريمي من زبدة فول سوداني توفيا وقطع كراميل طري.",
     productUsed: "Beurre de Cacahuètes TOFFIA",
+    productUsed_ar: "زبدة فول سوداني توفيا",
     image: "/caramel3.png",
     ingredients: [
       "200g de pâte à cookie pur beurre",
       "150g de Beurre de Cacahuètes TOFFIA",
       "Éclats de caramel mou et chocolat noir",
     ],
+    ingredients_ar: [
+      "200غ عجينة كوكيز بالزبدة",
+      "150غ زبدة فول سوداني توفيا",
+      "قطع كراميل طري وشوكولاتة سوداء",
+    ],
   },
-  // ── 6 new recipes below ──
   {
     id: "cheesecake-caramel-beurre-sale",
     title: "Cheesecake au Caramel Beurre Salé",
+    title_ar: "تشيز كيك بكراميل الزبدة المملحة",
     prepTime: "50 min",
+    prepTime_ar: "50 دقيقة",
     difficulty: "Moyen",
+    difficulty_ar: "متوسط",
     description: "Un cheesecake crémeux sur base de spéculoos, nappé d'un voile doré de Crème Caramel TOFFIA au beurre salé.",
+    description_ar: "تشيز كيك كريمي على قاعدة بسكويت لوتس، مغطى بطبقة ذهبية من كراميل توفيا بالزبدة المملحة.",
     productUsed: "Crème Caramel TOFFIA",
+    productUsed_ar: "كريمة كراميل توفيا",
     image: "/caramel1.png",
     ingredients: [
       "300g de cream cheese",
@@ -115,14 +190,26 @@ export const recipes: Recipe[] = [
       "200g de Crème Caramel TOFFIA",
       "2 œufs entiers",
     ],
+    ingredients_ar: [
+      "300غ جبن كريمي",
+      "150غ بسكويت مطحون",
+      "80غ زبدة مذابة نصف مملحة",
+      "200غ كريمة كراميل توفيا",
+      "بيضتان كاملتان",
+    ],
   },
   {
     id: "brownies-fondants-caramel",
     title: "Brownies Fondants Marbré Caramel",
+    title_ar: "براونيز ذائب مموج بالكراميل وزهرة الملح",
     prepTime: "35 min",
+    prepTime_ar: "35 دقيقة",
     difficulty: "Facile",
+    difficulty_ar: "سهل",
     description: "Des brownies ultra-fondants traversés de veines de caramel TOFFIA et parsemés de fleur de sel.",
+    description_ar: "براونيز شوكولاتة غني تتخلله تموجات كراميل توفيا اللذيذ وذرات زهرة الملح.",
     productUsed: "Crème Caramel TOFFIA",
+    productUsed_ar: "كريمة كراميل توفيا",
     image: "/caramel4.png",
     ingredients: [
       "200g de chocolat noir 65%",
@@ -131,14 +218,26 @@ export const recipes: Recipe[] = [
       "120g de sucre",
       "100g de Crème Caramel TOFFIA",
     ],
+    ingredients_ar: [
+      "200غ شوكولاتة سوداء 65%",
+      "150غ زبدة طرية",
+      "3 بيضات",
+      "120غ سكر",
+      "100غ كريمة كراميل توفيا",
+    ],
   },
   {
     id: "crepes-gourmandes-pistache",
     title: "Crêpes Gourmandes à la Crème de Pistache",
+    title_ar: "كريب فاخر بكريمة الفستق واللوز المبشور",
     prepTime: "20 min",
+    prepTime_ar: "20 دقيقة",
     difficulty: "Facile",
+    difficulty_ar: "سهل",
     description: "Fines crêpes dorées garnies d'une couche généreuse de Crème de Pistache TOFFIA et amandes effilées.",
+    description_ar: "رقائق كريب ذهبية محشوة بطبقة سخية من كريمة فستق توفيا ورقائق اللوز المحمص.",
     productUsed: "Crème de Pistache TOFFIA",
+    productUsed_ar: "كريمة فستق توفيا",
     image: "/caramel2.png",
     ingredients: [
       "8 crêpes fines maison",
@@ -146,14 +245,25 @@ export const recipes: Recipe[] = [
       "Amandes effilées grillées",
       "Sucre glace pour le saupoudrage",
     ],
+    ingredients_ar: [
+      "8 رقائق كريب منزلية",
+      "200غ كريمة فستق توفيا",
+      "رقائق لوز محمص",
+      "سكر ناعم للتزيين",
+    ],
   },
   {
     id: "glace-caramel-artisanale",
     title: "Glace Artisanale au Caramel Onctueux",
+    title_ar: "آيس كريم حرفي بالكراميل الناعم والبرالين",
     prepTime: "40 min + prise",
+    prepTime_ar: "40 دقيقة + تجميد",
     difficulty: "Moyen",
+    difficulty_ar: "متوسط",
     description: "Une glace veloutée sans sorbetière, sublimée par un coulis de Crème Caramel TOFFIA et éclats de pralin.",
+    description_ar: "آيس كريم مخملي بدون آلة تحضير، مزين بصلصة كريمة كراميل توفيا وقطع البرالين المقرمشة.",
     productUsed: "Crème Caramel TOFFIA",
+    productUsed_ar: "كريمة كراميل توفيا",
     image: "/caramel3.png",
     ingredients: [
       "400ml de crème liquide entière",
@@ -161,14 +271,25 @@ export const recipes: Recipe[] = [
       "150g de Crème Caramel TOFFIA",
       "60g de pralin concassé",
     ],
+    ingredients_ar: [
+      "400مل كريمة سائلة كاملة الدسم",
+      "200مل حليب مكثف محلى",
+      "150غ كريمة كراميل توفيا",
+      "60غ برالين مجروش",
+    ],
   },
   {
     id: "muffins-coeur-coulant-noisette",
     title: "Muffins Cœur Coulant à la Noisette",
+    title_ar: "مافن هش بقلب بندق توفيا السائل",
     prepTime: "30 min",
+    prepTime_ar: "30 دقيقة",
     difficulty: "Facile",
+    difficulty_ar: "سهل",
     description: "Muffins moelleux au cœur fondant de Crème de Noisettes TOFFIA, parfaits pour le goûter ou le brunch.",
+    description_ar: "مافن طري وشهي بقلب ذائب من كريمة بندق توفيا، مثالي لوجبة الإفطار والمساء.",
     productUsed: "Crème de Fourrage Noisettes TOFFIA",
+    productUsed_ar: "كريمة بندق توفيا",
     image: "/caramel1.png",
     ingredients: [
       "250g de farine type 55",
@@ -177,14 +298,26 @@ export const recipes: Recipe[] = [
       "120ml de lait",
       "150g de Crème de Noisettes TOFFIA",
     ],
+    ingredients_ar: [
+      "250غ طحين فاخر",
+      "100غ سكر",
+      "بيضتان",
+      "120مل حليب",
+      "150غ كريمة بندق توفيا",
+    ],
   },
   {
     id: "tartelettes-noix-caramel",
     title: "Tartelettes aux Noix & Caramel Doré",
+    title_ar: "تارت الجوز والكراميل الذهبي الفاخر",
     prepTime: "45 min",
+    prepTime_ar: "45 دقيقة",
     difficulty: "Moyen",
+    difficulty_ar: "متوسط",
     description: "Fond de tarte croustillant garni d'un appareil aux noix caramélisées et d'un filet de Nappage Miroir TOFFIA.",
+    description_ar: "قاعدة تارت مقرمشة محشوة بخليط الجوز المكرمل وخيط من تغليف كراميل توفيا.",
     productUsed: "Nappage Miroir Caramel TOFFIA",
+    productUsed_ar: "تغليف مرآة كراميل توفيا",
     image: "/caramel4.png",
     ingredients: [
       "Pâte sucrée pur beurre",
@@ -192,6 +325,13 @@ export const recipes: Recipe[] = [
       "100g de sucre caramélisé",
       "120g de Nappage Miroir Caramel TOFFIA",
       "30g de beurre doux",
+    ],
+    ingredients_ar: [
+      "عجينة تارت حلوة بالزبدة",
+      "150غ حبات جوز",
+      "100غ سكر مكرمل",
+      "120غ تغليف مرآة كراميل توفيا",
+      "30غ زبدة طرية",
     ],
   },
 ];

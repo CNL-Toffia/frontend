@@ -20,6 +20,7 @@ const NAV_BASE = "bg-transparent border-transparent";
 
 export default function Navbar({ transparent = false }: NavbarProps) {
   const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const tCategories = useTranslations("categories");
   const locale = useLocale();
   const router = useRouter();
@@ -96,7 +97,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
             <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
               <Image
                 src="/CnlLogo.png"
-                alt="Logo TOFFIA CNL Caramel"
+                alt={locale === "ar" ? "شعار توفيا سي إن إل كراميل" : "Logo TOFFIA CNL Caramel"}
                 width={80}
                 height={80}
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105"
@@ -215,7 +216,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                     ? `text-caramel-900 ${NAV_ACTIVE}`
                     : `text-caramel-900/80 ${NAV_BASE} ${NAV_HOVER} hover:text-caramel-900 hover:border-caramel-gold/20`
                 }`}
-                aria-label="Changer de langue"
+                aria-label={tCommon("changeLang")}
                 aria-expanded={langDropdownOpen}
               >
                 <Globe className="w-4 h-4 text-caramel-gold" />
@@ -321,7 +322,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                     ? `text-caramel-900 ${NAV_ACTIVE}`
                     : `text-caramel-900/80 bg-cream/70 border-caramel-900/15 hover:bg-[#EBE3D5] hover:text-caramel-900`
                 }`}
-                aria-label="Changer de langue"
+                aria-label={tCommon("changeLang")}
                 aria-expanded={mobileLangOpen}
               >
                 <Globe className="w-3.5 h-3.5 text-caramel-gold" />
@@ -420,7 +421,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                 setMobileMenuOpen(true);
               }}
               className="p-2 sm:p-2.5 rounded-xl bg-[#EBE3D5] text-caramel-900 hover:bg-caramel-100 border border-caramel-gold/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-caramel-gold cursor-pointer"
-              aria-label="Ouvrir le menu de navigation"
+              aria-label={tCommon("openMenu")}
             >
               <Menu className="w-6 h-6" />
             </button>

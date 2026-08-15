@@ -4,10 +4,15 @@
     "company": "CNL Caramel",
     "tagline": "La Passion du Caramel depuis 2011",
     "location": "Blida, Algérie",
+    "address": "Centre Benkhelil Lot N°01 - GPR 329 - SEC09, 09000 Blida, Algérie",
     "founded": "2011",
     "prev": "Précédent",
     "next": "Suivant",
-    "pageOf": "Page {current} sur {total}"
+    "pageOf": "Page {current} sur {total}",
+    "changeLang": "Changer de langue",
+    "openMenu": "Ouvrir le menu de navigation",
+    "closeMenu": "Fermer le menu",
+    "paginationRecipes": "Pagination des recettes"
   },
   "nav": {
     "home": "Accueil",
@@ -35,7 +40,10 @@
     "gamme1Title": "Gamme 1",
     "gamme1Subtitle": "Crèmes & Pâtes",
     "gamme2Title": "Gamme 2",
-    "gamme2Subtitle": "Nappages & Pro"
+    "gamme2Subtitle": "Nappages & Pro",
+    "narrative": "Guidés par la passion et l'exigence, nous sélectionnons les meilleurs ingrédients pour vous offrir un caramel d'exception. Une texture parfaite, un goût authentique : l'allié incontournable de vos plus belles créations.",
+    "btnProducts": "Découvrir la Gamme",
+    "btnPro": "Catalogue Professionnel"
   },
   "factory": {
     "title": "L'Art du Caramel d'Exception",
@@ -82,10 +90,12 @@
     "badge": "Contact Direct & Commandes",
     "title": "Contactez Notre Maison",
     "subtitle": "Pour vos commandes professionnelles, vos partenariats de distribution ou toute question gourmande sur nos gammes, nos conseillers à Blida vous répondent avec attention.",
+    "companyDesc": "Maison artisanale fondée en 2011 à Blida, dédiée à l'excellence du caramel et des spécialités gourmandes.",
     "addressTitle": "Unité de Production",
     "addressText": "Centre Benkhelil Lot N°01 - GPR 329 - SEC09, 09000 Blida, Algérie",
     "phoneTitle": "Téléphone & WhatsApp",
     "emailTitle": "Email Officiel",
+    "socialTitle": "Réseaux Sociaux",
     "hoursTitle": "Horaires d'Ouverture",
     "hoursText": "Samedi – Jeudi : 08h00 – 17h00\nVendredi : Fermé",
     "formTitle": "Envoyez-nous un Message",
@@ -95,7 +105,7 @@
     "email": "Adresse email *",
     "emailPlaceholder": "ex. contact@exemple.dz",
     "phone": "Numéro de téléphone *",
-    "phonePlaceholder": "ex. 0550 12 34 56",
+    "phonePlaceholder": "0XXX XX XX XX",
     "message": "Votre message *",
     "messagePlaceholder": "Précisez votre demande (produits souhaités, volumes, partenariats...)",
     "sendBtn": "Envoyer le message",
@@ -104,13 +114,26 @@
     "successDesc": "Merci de nous avoir contactés. Notre équipe commerciale prendra contact avec vous très rapidement.",
     "sendAnother": "Envoyer un autre message",
     "errorTitle": "Une erreur est survenue",
-    "errorDesc": "Veuillez vérifier vos informations et réessayer."
+    "errorDesc": "Veuillez vérifier vos informations et réessayer.",
+    "validationNameRequired": "Veuillez renseigner votre nom complet",
+    "validationNamePattern": "Veuillez n'utiliser que des lettres et des espaces.",
+    "validationEmailRequired": "Veuillez renseigner votre adresse email",
+    "validationEmailPattern": "Adresse email invalide",
+    "validationPhoneRequired": "Veuillez renseigner votre numéro de téléphone",
+    "validationPhonePattern": "Le numéro doit commencer par 0 et être valide.",
+    "validationMessageRequired": "Veuillez écrire votre message",
+    "validationMessageMin": "Votre message doit comporter au moins 10 caractères"
   },
   "footer": {
-    "desc": "Maison artisanale fondée en 2011 à Blida. Caramels fondants, crèmes onctueuses et nappages gastronomiques pour les passionnés et les maîtres artisans.",
+    "desc": "Maison artisanale fondée en 2011 à Blida. Nous façonnons avec passion l'excellence du caramel algérien pour sublimer le quotidien des gourmands et des artisans pâtissiers.",
     "navigationTitle": "Navigation",
     "productsTitle": "Nos Gammes",
-    "contactTitle": "Contact & Atelier",
+    "contactTitle": "Nous Contacter",
+    "proTitle": "Espace Professionnel",
+    "proDesc": "Besoin de gros volumes ou de recettes personnalisées ?",
+    "proBtn": "Nous écrire",
+    "socialTitle": "Suivez-nous",
+    "socialDesc": "Retrouvez-nous sur les réseaux sociaux pour découvrir nos dernières créations, tutoriels pâtissiers et coulisses de production.",
     "copyright": "© 2026 CNL Caramel · Tous droits réservés"
   }
 }

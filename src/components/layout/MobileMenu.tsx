@@ -21,36 +21,6 @@ export interface MobileMenuProps {
   onClose: () => void;
 }
 
-const containerVariants: Variants = {
-  closed: {
-    opacity: 0,
-    x: "100%",
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-  open: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.35,
-      ease: "easeOut",
-      when: "beforeChildren",
-      staggerChildren: 0.05,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  closed: { opacity: 0, x: 20 },
-  open: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.25, ease: "easeOut" },
-  },
-};
-
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const t = useTranslations("nav");
   const tCategories = useTranslations("categories");
@@ -60,6 +30,38 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname();
   const [productsExpanded, setProductsExpanded] = useState(false);
   const [langExpanded, setLangExpanded] = useState(false);
+
+  const isRtl = locale === "ar";
+
+  const containerVariants: Variants = {
+    closed: {
+      opacity: 0,
+      x: isRtl ? "-100%" : "100%",
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.35,
+        ease: "easeOut",
+        when: "beforeChildren",
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    closed: { opacity: 0, x: isRtl ? -20 : 20 },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.25, ease: "easeOut" },
+    },
+  };
 
   const handleLanguageChange = (newLocale: "fr" | "ar") => {
     if (newLocale !== locale) {
@@ -109,7 +111,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <div className="relative w-9 h-9 flex-shrink-0">
                   <Image
                     src="/CnlLogo.png"
-                    alt="Logo TOFFIA"
+                    alt={locale === "ar" ? "شعار توفيا" : "Logo TOFFIA"}
                     width={36}
                     height={36}
                     className="w-9 h-9 object-contain drop-shadow-md"
@@ -129,7 +131,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 type="button"
                 onClick={onClose}
                 className="w-10 h-10 rounded-full bg-caramel-700/60 hover:bg-caramel-700 flex items-center justify-center text-cream hover:text-caramel-gold transition-colors focus:outline-none focus:ring-2 focus:ring-caramel-gold cursor-pointer"
-                aria-label="Fermer le menu"
+                aria-label={tCommon("closeMenu")}
               >
                 <X className="w-5 h-5" />
               </button>
@@ -337,7 +339,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
               <div className="flex items-start gap-2.5 text-caramel-300/80 pt-1">
                 <MapPin className="w-4 h-4 text-caramel-gold flex-shrink-0 mt-0.5" />
-                <span>{siteConfig.contact.address}</span>
+                <span>{tCommon("address")}</span>
               </div>
             </div>
           </motion.div>

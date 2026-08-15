@@ -1,6 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 import {
   Phone,
   Mail,
@@ -53,6 +54,20 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 export default function Footer({ className }: FooterProps) {
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
+  const tCategories = useTranslations("categories");
+  const locale = useLocale();
+
+  const navLinks = [
+    { label: tNav("home"), href: "/" },
+    { label: tNav("about"), href: "/a-propos" },
+    { label: tNav("products"), href: "/produits" },
+    { label: tNav("recipes"), href: "/recettes" },
+    { label: tNav("contact"), href: "/contact" },
+  ];
+
   return (
     <footer
       className={`bg-cream text-caramel-900 relative overflow-hidden ${
@@ -67,8 +82,8 @@ export default function Footer({ className }: FooterProps) {
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-caramel-gold/25 to-transparent" />
       </div>
 
-      {/* Main Footer Content with Standard Clean Padding (py-12 sm:py-16) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10">
+      {/* Main Footer Content with Standard Clean Padding */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10 text-left rtl:text-right">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {/* Column 1: Brand & Narrative */}
           <div className="flex flex-col gap-4">
@@ -76,7 +91,7 @@ export default function Footer({ className }: FooterProps) {
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                 <Image
                   src="/CnlLogo.png"
-                  alt="Logo officiel TOFFIA CNL Caramel"
+                  alt={locale === "ar" ? "شعار توفيا سي إن إل كراميل" : "Logo officiel TOFFIA CNL Caramel"}
                   width={80}
                   height={80}
                   className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
@@ -93,25 +108,23 @@ export default function Footer({ className }: FooterProps) {
             </Link>
 
             <p className="text-sm text-caramel-900/70 leading-relaxed max-w-sm">
-              Maison artisanale fondée en 2011 à Blida. Nous façonnons avec
-              passion l'excellence du caramel algérien pour sublimer le quotidien
-              des gourmands et des artisans pâtissiers.
+              {t("desc")}
             </p>
           </div>
 
           {/* Column 2: Navigation & Gammes */}
           <div className="flex flex-col gap-3 sm:gap-4">
             <h3 className="font-display font-semibold text-lg text-caramel-900 tracking-wide flex items-center gap-2">
-              <span className="w-1.5 h-4 bg-caramel-gold rounded-full" />
-              <span>Navigation</span>
+              <span className="w-1.5 h-4 bg-caramel-gold rounded-full flex-shrink-0" />
+              <span>{t("navigationTitle")}</span>
             </h3>
 
             <ul className="flex flex-col gap-2 text-sm text-caramel-900/80">
-              {siteConfig.nav.map((item) => (
-                <li key={item.label}>
+              {navLinks.map((item) => (
+                <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="hover:text-caramel-gold hover:translate-x-1 transition-all inline-flex items-center gap-1.5"
+                    className="hover:text-caramel-gold hover:translate-x-1 rtl:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5"
                   >
                     <span>{item.label}</span>
                   </Link>
@@ -119,32 +132,32 @@ export default function Footer({ className }: FooterProps) {
               ))}
               <li className="pt-2">
                 <span className="text-xs text-caramel-700 font-semibold uppercase tracking-wider block mb-1.5">
-                  Nos Gammes
+                  {t("productsTitle")}
                 </span>
                 <div className="grid grid-cols-1 gap-1 text-xs text-caramel-900/60">
                   <Link
                     href="/produits?categorie=caramels-liquides"
                     className="hover:text-caramel-gold transition-colors"
                   >
-                    • Caramels Liquides
+                    • {tCategories("caramels-liquides")}
                   </Link>
                   <Link
                     href="/produits?categorie=pates-a-tartiner"
                     className="hover:text-caramel-gold transition-colors"
                   >
-                    • Pâtes à Tartiner
+                    • {tCategories("pates-a-tartiner")}
                   </Link>
                   <Link
                     href="/produits?categorie=nappages"
                     className="hover:text-caramel-gold transition-colors"
                   >
-                    • Nappages
+                    • {tCategories("nappages")}
                   </Link>
                   <Link
                     href="/produits?categorie=gamme-pro"
                     className="hover:text-caramel-gold transition-colors"
                   >
-                    • Gamme Professionnelle
+                    • {tCategories("gamme-pro")}
                   </Link>
                 </div>
               </li>
@@ -154,8 +167,8 @@ export default function Footer({ className }: FooterProps) {
           {/* Column 3: Coordonnées Officielles */}
           <div className="flex flex-col gap-3 sm:gap-4">
             <h3 className="font-display font-semibold text-lg text-caramel-900 tracking-wide flex items-center gap-2">
-              <span className="w-1.5 h-4 bg-caramel-gold rounded-full" />
-              <span>Nous Contacter</span>
+              <span className="w-1.5 h-4 bg-caramel-gold rounded-full flex-shrink-0" />
+              <span>{t("contactTitle")}</span>
             </h3>
 
             <div className="flex flex-col gap-3 text-sm text-caramel-900/80">
@@ -168,7 +181,7 @@ export default function Footer({ className }: FooterProps) {
                     rel="noopener noreferrer"
                     className="hover:text-caramel-gold transition-colors font-medium"
                   >
-                    {siteConfig.contact.address}
+                    {tCommon("address")}
                   </a>
                 </span>
               </div>
@@ -179,7 +192,7 @@ export default function Footer({ className }: FooterProps) {
                   href={`tel:${siteConfig.contact.phone}`}
                   className="hover:text-caramel-gold transition-colors font-medium"
                 >
-                  {siteConfig.contact.phoneFormatted}
+                  <span dir="ltr">{siteConfig.contact.phoneFormatted}</span>
                 </a>
               </div>
 
@@ -197,17 +210,17 @@ export default function Footer({ className }: FooterProps) {
             {/* Quick Pro CTA */}
             <div className="mt-1 p-3 rounded-xl bg-caramel-100/80 border border-caramel-gold/20 flex flex-col gap-1.5">
               <span className="text-xs font-semibold text-caramel-900">
-                Espace Professionnel
+                {t("proTitle")}
               </span>
               <p className="text-[11px] text-caramel-900/60 leading-tight">
-                Besoin de gros volumes ou de recettes personnalisées ?
+                {t("proDesc")}
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-1 text-xs font-semibold text-caramel-900 hover:text-caramel-gold transition-colors mt-0.5"
               >
-                <span>Nous écrire</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-caramel-gold" />
+                <span>{t("proBtn")}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-caramel-gold rtl:rotate-[-90deg]" />
               </Link>
             </div>
           </div>
@@ -215,8 +228,8 @@ export default function Footer({ className }: FooterProps) {
           {/* Column 4: Réseaux Sociaux */}
           <div className="flex flex-col gap-3 sm:gap-4">
             <h3 className="font-display font-semibold text-lg text-caramel-900 tracking-wide flex items-center gap-2">
-              <span className="w-1.5 h-4 bg-caramel-gold rounded-full" />
-              <span>Suivez-nous</span>
+              <span className="w-1.5 h-4 bg-caramel-gold rounded-full flex-shrink-0" />
+              <span>{t("socialTitle")}</span>
             </h3>
 
             <div className="flex items-center gap-2.5">
@@ -252,9 +265,7 @@ export default function Footer({ className }: FooterProps) {
             </div>
 
             <p className="text-xs text-caramel-900/60 leading-relaxed mt-1">
-              Retrouvez-nous sur les réseaux sociaux pour découvrir nos
-              dernières créations, tutoriels pâtissiers et coulisses de
-              production.
+              {t("socialDesc")}
             </p>
           </div>
         </div>
@@ -262,7 +273,7 @@ export default function Footer({ className }: FooterProps) {
 
       {/* Clean Copyright Bottom Bar with exact py-4 and top border */}
       <div className="w-full border-t border-caramel-gold/15 py-4 flex justify-center items-center text-center text-xs text-caramel-700">
-        <p className="m-0 leading-none">{siteConfig.legal.copyright}</p>
+        <p className="m-0 leading-none">{t("copyright")}</p>
       </div>
     </footer>
   );

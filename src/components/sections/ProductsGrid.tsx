@@ -83,6 +83,7 @@ interface CategoryRowProps {
 }
 
 function CategoryRow({ id, label, products }: CategoryRowProps) {
+  const tCommon = useTranslations("common");
   const scrollRef = useRef<HTMLDivElement>(null);
   const showArrow = products.length > 3;
 
@@ -103,11 +104,11 @@ function CategoryRow({ id, label, products }: CategoryRowProps) {
         </h2>
 
         {showArrow && (
-          <div className="flex items-center gap-2 mb-0 ml-4 rtl:ml-0 rtl:mr-4 flex-shrink-0">
+          <div className="flex items-center gap-2 mb-0 ms-4 flex-shrink-0">
             <button
               type="button"
               onClick={scrollLeft}
-              aria-label={`Précédent ${label}`}
+              aria-label={`${tCommon("prev")} ${label}`}
               className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95 cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5 rtl:rotate-180" />
@@ -115,7 +116,7 @@ function CategoryRow({ id, label, products }: CategoryRowProps) {
             <button
               type="button"
               onClick={scrollRight}
-              aria-label={`Suivant ${label}`}
+              aria-label={`${tCommon("next")} ${label}`}
               className="w-10 h-10 rounded-full border border-caramel-gold/30 flex items-center justify-center text-caramel-dark hover:bg-caramel-gold/15 hover:border-caramel-gold/70 transition-colors shadow-sm active:scale-95 cursor-pointer"
             >
               <ChevronRight className="w-5 h-5 rtl:rotate-180" />

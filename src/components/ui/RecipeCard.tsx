@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Recipe } from "@/data/recipes";
@@ -17,7 +17,15 @@ export default function RecipeCard({
   className = "",
 }: RecipeCardProps) {
   const t = useTranslations("recipesPage");
+  const locale = useLocale();
+  const isAr = locale === "ar";
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const title = isAr && recipe.title_ar ? recipe.title_ar : recipe.title;
+  const description =
+    isAr && recipe.description_ar ? recipe.description_ar : recipe.description;
+  const ingredients =
+    isAr && recipe.ingredients_ar ? recipe.ingredients_ar : recipe.ingredients;
 
   return (
     <motion.article
@@ -31,7 +39,7 @@ export default function RecipeCard({
       <div className="overflow-hidden rounded-xl aspect-[4/5] relative mb-5">
         <Image
           src={recipe.image}
-          alt={recipe.title}
+          alt={title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -45,7 +53,7 @@ export default function RecipeCard({
         className="flex items-start justify-between gap-3 text-left rtl:text-right w-full cursor-pointer"
       >
         <h3 className="text-xl font-bold text-caramel-dark leading-snug font-display">
-          {recipe.title}
+          {title}
         </h3>
         <ChevronDown
           className={`w-5 h-5 text-caramel-gold flex-shrink-0 mt-1 transition-transform duration-300 ${
@@ -55,15 +63,15 @@ export default function RecipeCard({
       </button>
 
       {/* Description */}
-      {recipe.description && (
+      {description && (
         <p className="text-sm text-caramel-dark/65 leading-relaxed mt-2 text-left rtl:text-right">
-          {recipe.description}
+          {description}
         </p>
       )}
 
       {/* Expandable Ingredients Accordion */}
       <AnimatePresence initial={false}>
-        {isExpanded && recipe.ingredients.length > 0 && (
+        {isExpanded && ingredients && ingredients.length > 0 && (
           <motion.div
             key="ingredients"
             initial={{ height: 0, opacity: 0 }}
@@ -77,7 +85,7 @@ export default function RecipeCard({
                 {t("ingredients")}
               </span>
               <ul className="space-y-1.5">
-                {recipe.ingredients.map((ingredient, idx) => (
+                {ingredients.map((ingredient, idx) => (
                   <li
                     key={idx}
                     className="text-sm text-caramel-dark/70 leading-relaxed flex items-baseline gap-2"
