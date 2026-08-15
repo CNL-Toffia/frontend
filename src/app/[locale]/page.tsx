@@ -2,7 +2,8 @@ import { setRequestLocale } from "next-intl/server";
 import Hero from "@/components/sections/Hero";
 import Signature from "@/components/sections/Signature";
 import Factory from "@/components/sections/Factory";
-import { Analytics } from "@vercel/analytics/next"
+import PageTransition from "@/components/ui/PageTransition";
+import { Analytics } from "@vercel/analytics/next";
 
 export default async function HomePage({
   params,
@@ -13,7 +14,7 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   return (
-    <main className="flex-1 flex flex-col w-full">
+    <PageTransition>
       <Analytics />
 
       {/* 1. Typography-focused Hero */}
@@ -30,6 +31,6 @@ export default async function HomePage({
 
       {/* 3. Factory & Savoir-faire Showcase */}
       <Factory />
-    </main>
+    </PageTransition>
   );
 }

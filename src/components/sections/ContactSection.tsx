@@ -74,7 +74,13 @@ export default function ContactSection({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 text-left rtl:text-right">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mb-16 text-left rtl:text-right"
+        >
           <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-caramel-dark leading-[1.1] tracking-tight mb-6">
             {t("title")}
           </h2>
@@ -82,12 +88,18 @@ export default function ContactSection({
           <p className="text-lg md:text-xl text-caramel-dark/80 leading-relaxed max-w-2xl">
             {t("subtitle")}
           </p>
-        </div>
+        </motion.div>
 
         {/* 2-Column Minimalist Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Left Column: Form */}
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7"
+          >
             <AnimatePresence mode="wait">
               {isSubmitted ? (
                 <motion.div
@@ -273,10 +285,16 @@ export default function ContactSection({
                 </form>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
 
           {/* Right Column: Editorial Contact Details */}
-          <div className="lg:col-span-5 flex flex-col gap-10 lg:pl-6 rtl:lg:pl-0 rtl:lg:pr-6 text-left rtl:text-right">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex flex-col gap-10 lg:pl-6 rtl:lg:pl-0 rtl:lg:pr-6 text-left rtl:text-right"
+          >
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-caramel-gold block mb-2">
                 {t("badge")}
@@ -387,7 +405,7 @@ export default function ContactSection({
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

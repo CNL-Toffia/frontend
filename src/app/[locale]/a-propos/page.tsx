@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import AboutStory from "@/components/sections/AboutStory";
 import AboutMission from "@/components/sections/AboutMission";
+import PageTransition from "@/components/ui/PageTransition";
 
 export default async function AboutPage({
   params,
@@ -13,7 +14,7 @@ export default async function AboutPage({
   const t = await getTranslations("aboutPage");
 
   return (
-    <main className="flex-1 flex flex-col w-full">
+    <PageTransition>
       {/* Editorial Hero Header */}
       <section className="relative pt-16 pb-12 sm:pt-20 sm:pb-14 lg:pt-24 lg:pb-16 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -28,6 +29,6 @@ export default async function AboutPage({
 
       {/* Mission Statement */}
       <AboutMission />
-    </main>
+    </PageTransition>
   );
 }

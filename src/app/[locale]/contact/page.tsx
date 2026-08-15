@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { setRequestLocale } from "next-intl/server";
 import ContactSection from "@/components/sections/ContactSection";
+import PageTransition from "@/components/ui/PageTransition";
 
 export default async function ContactPage({
   params,
@@ -11,11 +12,11 @@ export default async function ContactPage({
   setRequestLocale(locale);
 
   return (
-    <main className="flex-1 flex flex-col w-full">
+    <PageTransition>
       {/* Contact Form & Information */}
       <Suspense fallback={null}>
         <ContactSection />
       </Suspense>
-    </main>
+    </PageTransition>
   );
 }

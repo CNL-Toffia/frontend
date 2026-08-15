@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import RecipesGrid from "@/components/sections/RecipesGrid";
+import PageTransition from "@/components/ui/PageTransition";
 
 export default async function RecipesPage({
   params,
@@ -12,7 +13,7 @@ export default async function RecipesPage({
   const t = await getTranslations("recipesPage");
 
   return (
-    <main className="flex-1 flex flex-col w-full">
+    <PageTransition>
       {/* Editorial Page Header */}
       <section className="relative pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -31,6 +32,6 @@ export default async function RecipesPage({
 
       {/* Minimalist Recipe Grid with Pagination */}
       <RecipesGrid />
-    </main>
+    </PageTransition>
   );
 }
