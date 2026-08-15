@@ -66,18 +66,32 @@ body {
   background: #ECA315;
 }
 
-/* Seamless Marquee Animation */
+/* Seamless Hardware-Accelerated Marquee Animation */
 @keyframes marquee-ltr {
   0% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
   100% {
-    transform: translateX(0%);
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+@keyframes marquee-rtl {
+  0% {
+    transform: translate3d(50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
   }
 }
 
 .animate-marquee-ltr {
-  animation: marquee-ltr 40s linear infinite;
+  animation: marquee-ltr 30s linear infinite;
+  will-change: transform;
+}
+
+[dir="rtl"] .animate-marquee-ltr {
+  animation: marquee-rtl 30s linear infinite;
 }
 
 /* Hide scrollbar for horizontal scroll containers */

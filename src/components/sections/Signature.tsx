@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
@@ -24,21 +24,11 @@ const gamme2Products = [
   { id: "g2-3", src: "/caramel1.png", alt: "Caramel Liquide Pâtissier TOFFIA" },
 ];
 
-// 4× duplication for seamless continuous marquee loop
-const track1 = [
-  ...gamme1Products,
-  ...gamme1Products,
-  ...gamme1Products,
-  ...gamme1Products,
-];
-const track2 = [
-  ...gamme2Products,
-  ...gamme2Products,
-  ...gamme2Products,
-  ...gamme2Products,
-];
+// 2× duplication for exact seamless 50% continuous marquee loop
+const track1 = [...gamme1Products, ...gamme1Products];
+const track2 = [...gamme2Products, ...gamme2Products];
 
-function ProductImage({
+const ProductImage = memo(function ProductImage({
   itemKey,
   src,
   alt,
@@ -64,21 +54,24 @@ function ProductImage({
       }}
     >
       <div
-        className={`relative w-full h-full p-2 transition-transform duration-500 ease-out ${isActive ? "scale-120 sm:scale-125 z-30" : "group-hover:scale-115"
-          }`}
+        className={`relative w-full h-full p-2 flex items-center justify-center transition-transform duration-500 ease-out ${
+          isActive ? "scale-120 sm:scale-125 z-30" : "group-hover:scale-115"
+        }`}
       >
         <Image
           src={src}
           alt={alt}
-          fill
-          sizes="(max-width: 640px) 160px, (max-width: 1024px) 200px, 240px"
-          className="object-contain select-none pointer-events-none"
+          width={224}
+          height={224}
+          loading="eager"
+          decoding="async"
+          className="w-full h-full object-contain select-none pointer-events-none"
           draggable={false}
         />
       </div>
     </div>
   );
-}
+});
 
 export default function Signature({ className }: SignatureProps) {
   const t = useTranslations("signature");
